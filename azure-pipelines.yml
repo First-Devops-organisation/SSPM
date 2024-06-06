@@ -7,8 +7,4 @@ pool:
 steps:
 - task: PowerShell@2
   inputs:
-    targetType: 'inline'
-    script: |
-      # Write your PowerShell commands here.
-      
-      Get-ChildItem -Recurse C:\Users\Azurevm\Documents\PowerShell\Modules\monkey365 | Unblock-File
+    filePath: 'C:\Users\Azurevm\Desktop\monkey365.ps1'
