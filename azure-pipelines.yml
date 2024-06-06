@@ -10,6 +10,9 @@ steps:
     targetType: 'inline'
     script: |
       # Write your PowerShell commands here.
+      - task: PowerShell@2
+        inputs:
+          filePath: 'C:\Users\Azurevm\Documents\PowerShell\Modules'
       Import-Module monkey365
       $param = @{
              Instance = 'Azure';
@@ -19,5 +22,4 @@ steps:
              TenantID = 'd8e705e3-abdd-4b36-8f17-c5beb4465d33';
              ExportTo = 'HTML';
       }
-      
       $assets = Invoke-Monkey365 @param
