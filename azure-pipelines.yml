@@ -7,4 +7,4 @@ pool:
 steps: 
 - task: PowerShell@2
   inputs:
-    filePath: 'C:\Users\Nimish.Mulkalwar\Desktop\monkey365.ps1'
+    filePath: 'C:\Users\Nimish.Mulkalwar\Desktop\file.ps1'
