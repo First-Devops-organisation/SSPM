@@ -21,3 +21,5 @@ steps:
       }
       
       $assets = Invoke-Monkey365 @param
+  env:
+    PWSH: '7'
