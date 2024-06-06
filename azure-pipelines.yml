@@ -11,7 +11,7 @@ steps:
     script: |
       # Write your PowerShell commands here.
       
-      Get-ChildItem -Recurse C:\Users\Nimish.Mulkalwar\Documents\WindowsPowerShell\Modules\monkey365 | Unblock-File
+      Get-ChildItem -Recurse C:\Users\Azurevm\Documents\PowerShell\Modules\monkey365 | Unblock-File
       Import-Module monkey365
       $param = @{
              Instance = 'Azure';
