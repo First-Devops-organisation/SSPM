@@ -1,4 +1,6 @@
 Get-ChildItem -Recurse c:\monkey365 | Unblock-File
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+Get-ExecutionPolicy -List
 Import-Module monkey365
 $param = @{
        Instance = 'Azure';
