@@ -1,0 +1,13 @@
+Get-ChildItem -Recurse c:\monkey365 | Unblock-File
+Import-Module monkey365
+$param = @{
+       Instance = 'Azure';
+       Analysis = 'All';
+       PromptBehavior = 'SelectAccount';
+       Subscriptions = 'c695dbea-3557-43d1-97d7-92b5c140e941';
+       TenantID = 'd8e705e3-abdd-4b36-8f17-c5beb4465d33';
+       ExportTo = 'HTML';
+}
+
+$assets = Invoke-Monkey365 @param
+
