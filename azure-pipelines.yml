@@ -15,13 +15,13 @@ steps:
       Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
       # Register custom NuGet repository
-      $parameters = @{
-        Name = "myNuGetSource"
-        SourceLocation = "https://www.myget.org/F/powershellgetdemo/api/v2"
-        PublishLocation = "https://www.myget.org/F/powershellgetdemo/api/v2/Packages"
-        InstallationPolicy = 'Trusted'
-      }
-      Register-PSRepository @parameters
+      #$parameters = @{
+       # Name = "myNuGetSource"
+        #SourceLocation = "https://www.myget.org/F/powershellgetdemo/api/v2"
+        #PublishLocation = "https://www.myget.org/F/powershellgetdemo/api/v2/Packages"
+        #InstallationPolicy = 'Trusted'
+      #}
+      Register-PSRepositoryFix -Name test -SourceLocation https://some-nuget/api/v2      Register-PSRepository @parameters
 
       # Set PSGallery repository installation policy to Trusted
       Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
