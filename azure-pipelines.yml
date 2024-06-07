@@ -14,6 +14,8 @@ steps:
       # Ensure execution policy allows script execution
       Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
+      Install-Module -Name monkey365 -Scope CurrentUser
+
       # Import required modules
       try {
           Import-Module -Name monkey365 -ErrorAction Stop
