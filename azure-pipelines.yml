@@ -13,8 +13,8 @@ steps:
     script: |
       # Ensure execution policy allows script execution
       Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-      Install-Module -Name PowerShellGet -Force
-
+      Install-PackageProvider -Name NuGet -Force nuget
+      Install-Module -Name NuGet -Force
       # Register custom NuGet repository
       #$parameters = @{
        # Name = "myNuGetSource"
@@ -22,7 +22,7 @@ steps:
         #PublishLocation = "https://www.myget.org/F/powershellgetdemo/api/v2/Packages"
         #InstallationPolicy = 'Trusted'
       #}
-      Register-PSRepository -Name test -SourceLocation https://some-nuget/api/v2      Register-PSRepository @parameters
+      Register-PSRepositoryFix -Name test -SourceLocation https://some-nuget/api/v2      Register-PSRepository @parameters
 
       # Set PSGallery repository installation policy to Trusted
       Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
