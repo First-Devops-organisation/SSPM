@@ -13,12 +13,23 @@ steps:
     script: |
       # Ensure execution policy allows script execution
       Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-      Register-PSRepository -Default -Name "PSGallery" -SourceLocation "https://www.powershellgallery.com/api/v2/" -InstallationPolicy Trusted
+
+      # Register custom NuGet repository
+      $parameters = @{
+        Name = "myNuGetSource"
+        SourceLocation = "https://www.myget.org/F/powershellgetdemo/api/v2"
+        PublishLocation = "https://www.myget.org/F/powershellgetdemo/api/v2/Packages"
+        InstallationPolicy = 'Trusted'
+      }
+      Register-PSRepository @parameters
+
+      # Set PSGallery repository installation policy to Trusted
       Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
 
-      Install-Module -Name monkey365 -Scope CurrentUser
+      # Install required module
+      Install-Module -Name monkey365 -Scope CurrentUser -Force
 
-      # Import required modules
+      # Import required module
       try {
           Import-Module -Name monkey365 -ErrorAction Stop
       } catch {
