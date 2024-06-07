@@ -13,7 +13,7 @@ steps:
     script: |
       # Ensure execution policy allows script execution
       Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-      Install-PackageProvider -Name NuGet -Force nuget
+      Install-PackageProvider -Name NuGet -Force
       Install-Module -Name NuGet -Force
       # Register custom NuGet repository
       #$parameters = @{
