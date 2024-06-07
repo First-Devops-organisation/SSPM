@@ -13,7 +13,7 @@ steps:
     script: |
       # Ensure execution policy allows script execution
       Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-      Register-PSRepository -Name "PSGallery" -SourceLocation "https://www.powershellgallery.com/api/v2/" -InstallationPolicy Trusted
+      Register-PSRepository -Default -Name "PSGallery" -SourceLocation "https://www.powershellgallery.com/api/v2/" -InstallationPolicy Trusted
       Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
 
       Install-Module -Name monkey365 -Scope CurrentUser
