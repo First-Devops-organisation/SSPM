@@ -16,6 +16,7 @@ steps:
       Install-PackageProvider -Name NuGet -Force
       Install-Module -Name NuGet -Force
       Install-Module -Name PowerShellGet -Force -AllowClobber
+      Unregister-PSRepository -Name PSGallery
       # Register custom NuGet repository
       #$parameters = @{
        # Name = "myNuGetSource"
