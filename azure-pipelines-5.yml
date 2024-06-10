@@ -13,7 +13,7 @@ steps:
     script: |
       # Ensure execution policy allows script execution
       Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-
+      Install-PackageProvider -Name NuGet -Force nuget
       # Install required module
       Install-Module -Name monkey365 -Scope CurrentUser -Force -AllowClobber
 
