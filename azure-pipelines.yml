@@ -24,7 +24,7 @@ steps:
       #}
       #Register-PSRepository -Name test -SourceLocation https://some-nuget/api/v2      
       #Register-PSRepository @parameters
-      Register-PSRepository -Name "myNuGetSource" -SourceLocation "https://some-nuget/api/v2" -PublishLocation "https://some-nuget/api/v2/Packages" -InstallationPolicy Trusted
+      Register-PSRepository -Name "myNuGetSource" -SourceLocation "https://www.myget.org/F/powershellgetdemo/api/v2" -PublishLocation "https://www.myget.org/F/powershellgetdemo/api/v2/Packages" -InstallationPolicy Trusted
       # Set PSGallery repository installation policy to Trusted
       Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
 
