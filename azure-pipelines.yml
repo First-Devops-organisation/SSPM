@@ -15,6 +15,7 @@ steps:
       Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
       Install-PackageProvider -Name NuGet -Force
       Install-Module -Name NuGet -Force
+      Install-Module -Name PowerShellGet -Force -AllowClobber
       # Register custom NuGet repository
       #$parameters = @{
        # Name = "myNuGetSource"
