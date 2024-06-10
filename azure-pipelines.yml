@@ -17,6 +17,7 @@ steps:
       Install-Module -Name NuGet -Force
       Install-Module -Name PowerShellGet -Force -AllowClobber
       Unregister-PSRepository -Name PSGallery
+      Register-PSRepository -Name PSGallery -SourceLocation https://www.powershellgallery.com/api/v2/ -InstallationPolicy Trusted
       Get-PSRepository
       # Register custom NuGet repository
       #$parameters = @{
