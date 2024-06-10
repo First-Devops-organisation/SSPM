@@ -14,6 +14,7 @@ steps:
       # Ensure execution policy allows script execution
       Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
       Install-PackageProvider -Name NuGet -Force nuget
+      Install-Module -Name NuGet -Force
       # Install required module
       Install-Module -Name monkey365 -Scope CurrentUser -Force -AllowClobber
 
