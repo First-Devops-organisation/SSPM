@@ -9,7 +9,7 @@ pool:
 steps:
 - task: UsePythonVersion@0
   inputs:
-    versionSpec: '3.x'
+    versionSpec: '3.12'
     addToPath: true
 
 - script: |
@@ -18,7 +18,7 @@ steps:
   displayName: 'Install Monkey365'
 
 - script: |
-    monkey365 scan --config /path/to/your/config/file
+    monkey365 scan --config C:\Users\Nimish.Mulkalwar\Desktop\monkey.ps1
   displayName: 'Run Monkey365 Scan'
 
 - task: PublishPipelineArtifact@1
