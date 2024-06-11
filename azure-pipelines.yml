@@ -18,7 +18,7 @@ steps:
       Install-Module -Name PowerShellGet -Force -Scope CurrentUser -AllowClobber
       Unregister-PSRepository -Name PSGallery -ErrorAction SilentlyContinue
       Register-PSRepository -Name PSGallery -SourceLocation https://www.powershellgallery.com/api/v2 -InstallationPolicy Trusted
-
+      Register-PSRepository -Default
       # Install required module
       Install-Module -Name monkey365 -Scope CurrentUser -Force
 
