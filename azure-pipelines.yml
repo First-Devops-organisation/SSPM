@@ -21,6 +21,10 @@ steps:
       Register-PSRepository -Default
       # Install required module
       Install-Module -Name monkey365 -Scope CurrentUser -Force 
+      Get-PSRepository
+      Find-Module -Name monkey365
+      Register-PSRepository -Name monkey365 -SourceLocation "C:\monkey365" -InstallationPolicy Trusted
+      Install-Module -Name monkey365 -Scope CurrentUser -Force
 
       # Unblock files in the monkey365 directory
       Get-ChildItem -Recurse 'C:\monkey365' | Unblock-File
