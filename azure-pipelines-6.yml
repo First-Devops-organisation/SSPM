@@ -1,0 +1,28 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+
+- script: |
+    python -m pip install --upgrade pip
+    pip install monkey365
+  displayName: 'Install Monkey365'
+
+- script: |
+    monkey365 scan --config /path/to/your/config/file
+  displayName: 'Run Monkey365 Scan'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Pipeline.Workspace)/scan-results'
+    artifact: 'scan-results'
+  displayName: 'Publish Scan Results'
