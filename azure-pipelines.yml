@@ -14,23 +14,30 @@ steps:
     script: |
       # Ensure execution policy allows script execution
       Set-ExecutionPolicy Unrestricted -Scope Process -Force
+
+      # Install NuGet package provider
       Install-PackageProvider -Name NuGet -Force
-      Install-Module -Name NuGet -Force -Scope CurrentUser
+
+      # Install or update NuGet module
+      Install-Module -Name NuGet -Force -Scope CurrentUser -AllowClobber
+
+      # Install or update PowerShellGet module
       Install-Module -Name PowerShellGet -Force -Scope CurrentUser -AllowClobber
+
+      # Unregister the PSGallery repository to avoid potential conflicts
       Unregister-PSRepository -Name PSGallery -ErrorAction SilentlyContinue
-      Register-PSRepository -Default
-      # Install required module
-      Install-Module -Name monkey365 -Scope CurrentUser -Force 
-      Get-PSRepository
-      Find-Module -Name monkey365
-      Register-PSRepository -Name monkey365 -SourceLocation "C:\monkey365" -InstallationPolicy Trusted
-      Install-Module monkey365 -Scope CurrentUser -Force
 
-      # Unblock files in the monkey365 directory
-      Get-ChildItem -Recurse 'C:\monkey365' | Unblock-File
+      # Register the default PowerShell Gallery repository
+      Register-PSRepository -Default -Force
 
-      # Import the Monkey365 module
-      Import-Module monkey365
+      # Install the 'monkey365' module from the PowerShell Gallery
+      Install-Module -Name monkey365 -Scope CurrentUser -Force
+
+      # Unblock files in the monkey365 directory (if needed)
+      Get-ChildItem -Path 'C:\monkey365' -Recurse | Unblock-File -ErrorAction SilentlyContinue
+
+      # Import the 'monkey365' module
+      Import-Module -Name monkey365
 
       # Define Monkey365 parameters
       $param = @{
@@ -43,5 +50,4 @@ steps:
       }
 
       # Invoke Monkey365 analysis
-      $assets = Invoke-Monkey365 @param
-
+      Invoke-Monkey365 @param
