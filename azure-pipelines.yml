@@ -25,7 +25,7 @@ steps:
       Unregister-PSRepository -Name PSGallery -ErrorAction SilentlyContinue
 
       # Register the default PowerShell Gallery repository
-      Register-PSRepository -Default -Force
+      Register-PSRepository -Default
 
       # Install the 'monkey365' module from the PowerShell Gallery
       Install-Module -Name monkey365 -Scope CurrentUser -Force
