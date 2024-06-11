@@ -8,6 +8,7 @@ pool:
 
 steps:
 - task: PowerShell@2
+  displayName: 'Install and configure Monkey365'
   inputs:
     targetType: 'inline'
     script: |
@@ -19,17 +20,15 @@ steps:
       Unregister-PSRepository -Name PSGallery -ErrorAction SilentlyContinue
       Register-PSRepository -Default
       # Install required module
-      Install-Module -Name monkey365 -Scope CurrentUser -Force
+      Install-Module -Name monkey365 -Scope CurrentUser -Force 
 
-      # Import required module
-      try {
-          Import-Module -Name monkey365 -ErrorAction Stop
-      } catch {
-          Write-Error "Failed to import module 'monkey365'. Please ensure the module is installed."
-          exit 1
-      }
+      # Unblock files in the monkey365 directory
+      Get-ChildItem -Recurse 'C:\monkey365' | Unblock-File
 
-      # Define parameters
+      # Import the Monkey365 module
+      Import-Module -Name monkey365
+
+      # Define Monkey365 parameters
       $param = @{
           Instance        = 'Azure'
           Analysis        = 'All'
@@ -39,21 +38,6 @@ steps:
           ExportTo        = 'HTML'
       }
 
-      # Invoke the command with parameters
-      try {
-          $assets = Invoke-Monkey365 @param
-      } catch {
-          Write-Error "Failed to invoke Monkey365 command: $_"
-          exit 1
-      }
+      # Invoke Monkey365 analysis
+      $assets = Invoke-Monkey365 @param
 
-      # If you need to unblock files
-      try {
-          Get-ChildItem -Path 'C:\monkey365' -Recurse | Unblock-File -ErrorAction Stop
-      } catch {
-          Write-Error "Failed to unblock files: $_"
-          exit 1
-      }
-
-      # Successful execution
-      Write-Output "Monkey365 analysis completed successfully."
