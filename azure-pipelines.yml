@@ -13,11 +13,8 @@ steps:
     targetType: 'inline'
     script: |
       # Ensure execution policy allows script execution
-      Set-ExecutionPolicy Unrestricted -Scope Process -Force
-
-      # Install NuGet package provider
-      Install-PackageProvider -Name NuGet -Force
-
+      Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+      Install-PackageProvider -Name NuGet -Force nuget
       # Install or update NuGet module
       Install-Module -Name NuGet -Force -Scope CurrentUser -AllowClobber
 
