@@ -12,25 +12,12 @@ steps:
     targetType: 'inline'
     script: |
       # Ensure execution policy allows script execution
-      Set-ExecutionPolicy Unrestricted
+      Set-ExecutionPolicy Unrestricted -Scope Process -Force
       Install-PackageProvider -Name NuGet -Force
-      Install-Module -Name NuGet -Force
-      Install-Module -Name PowerShellGet -Force -AllowClobber
-      Unregister-PSRepository -Name PSGallery
-      Register-PSRepository -Default
-      Get-PSRepository
-      # Register custom NuGet repository
-      #$parameters = @{
-       # Name = "myNuGetSource"
-        #SourceLocation = "https://www.myget.org/F/powershellgetdemo/api/v2"
-        #PublishLocation = "https://www.myget.org/F/powershellgetdemo/api/v2/Packages"
-        #InstallationPolicy = 'Trusted'
-      #}
-      #Register-PSRepository -Name test -SourceLocation https://some-nuget/api/v2      
-      #Register-PSRepository @parameters
-      Register-PSRepository -Name "myNuGetSource" -SourceLocation "https://www.powershellgallery.com/api/v2" -PublishLocation "https://www.powershellgallery.com/api/v2" -InstallationPolicy Trusted
-      # Set PSGallery repository installation policy to Trusted
-        Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
+      Install-Module -Name NuGet -Force -Scope CurrentUser
+      Install-Module -Name PowerShellGet -Force -Scope CurrentUser -AllowClobber
+      Unregister-PSRepository -Name PSGallery -ErrorAction SilentlyContinue
+      Register-PSRepository -Name PSGallery -SourceLocation https://www.powershellgallery.com/api/v2 -InstallationPolicy Trusted
 
       # Install required module
       Install-Module -Name monkey365 -Scope CurrentUser -Force
