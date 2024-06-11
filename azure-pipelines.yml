@@ -14,7 +14,7 @@ steps:
     script: |
       # Ensure execution policy allows script execution
       Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-      Install-PackageProvider -Name NuGet -Force nuget
+      Install-PackageProvider -Name NuGet -Force
       # Install or update NuGet module
       Install-Module -Name NuGet -Force -Scope CurrentUser -AllowClobber
 
