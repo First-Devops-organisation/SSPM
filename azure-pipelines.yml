@@ -31,10 +31,10 @@ steps:
       Install-Module -Name monkey365 -Scope CurrentUser -Force
 
       # Unblock files in the monkey365 directory (if needed)
-      Get-ChildItem -Path 'C:\monkey365' -Recurse | Unblock-File -ErrorAction SilentlyContinue
+      Get-ChildItem -Path 'C:\monkey365' -Recurse | Unblock-File
 
       # Import the 'monkey365' module
-      Import-Module -Name monkey365
+      Import-Module monkey365
 
       # Define Monkey365 parameters
       $param = @{
