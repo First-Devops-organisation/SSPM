@@ -13,6 +13,7 @@ steps:
     script: |
       # Ensure execution policy allows script execution
       Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+      Set-ExecutionPolicy Unrestricted
       Install-PackageProvider -Name NuGet -Force
       Install-Module -Name NuGet -Force
       Install-Module -Name PowerShellGet -Force -AllowClobber
