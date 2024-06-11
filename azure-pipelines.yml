@@ -17,7 +17,7 @@ steps:
       Install-Module -Name NuGet -Force
       Install-Module -Name PowerShellGet -Force -AllowClobber
       Unregister-PSRepository -Name "PSGallery"
-      #Register-PSRepository -Default -Name "PSGallery" -SourceLocation https://www.powershellgallery.com/api/v2/ -InstallationPolicy Trusted
+      #Register-PSRepository -Default -Name test -SourceLocation https://www.powershellgallery.com/api/v2/ -InstallationPolicy Trusted
       Get-PSRepository
       # Register custom NuGet repository
       #$parameters = @{
@@ -26,7 +26,7 @@ steps:
         #PublishLocation = "https://www.myget.org/F/powershellgetdemo/api/v2/Packages"
         #InstallationPolicy = 'Trusted'
       #}
-      Register-PSRepository -Name test -SourceLocation https://some-nuget/api/v2      
+      #Register-PSRepository -Name test -SourceLocation https://some-nuget/api/v2      
       #Register-PSRepository @parameters
       Register-PSRepository -Name "myNuGetSource" -SourceLocation "https://www.powershellgallery.com/api/v2" -PublishLocation "https://www.powershellgallery.com/api/v2" -InstallationPolicy Trusted
       # Set PSGallery repository installation policy to Trusted
