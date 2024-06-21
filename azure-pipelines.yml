@@ -38,6 +38,13 @@ steps:
     command: 'publish'
     publishWebProjects: true
 
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects: '**/*.csproj'
+    arguments: '--configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
+
 - task: PublishCodeCoverageResults@1
   inputs:
           codeCoverageTool: 'Cobertura'
