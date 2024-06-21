@@ -1,195 +1,170 @@
-<p align="center">
-   <a href="https://themeselection.com/item/materio-free-aspnet-core-mvc-admin-template/" target="_blank">
-      <img src="https://user-images.githubusercontent.com/749684/150333149-805037bc-8874-4a1f-876a-61a9683f8ef5.png" alt="materio-logo" width="30px" height="auto">
-   </a>
-</p>
+# Microsoft eShopOnWeb ASP.NET Core Reference Application
 
-<h1 align="center">
-   <a href="https://themeselection.com/item/materio-free-aspnet-core-mvc-admin-template/" target="_blank" align="center">
-      Materio - Free Bootstrap 5 .Net Core MVC Admin Template
-   </a>
-</h1>
+> eShop sample applications have been updated and moved to https://github.com/dotnet/eShop. Active development will continue there. We also recommend the [Reliable Web App](https://learn.microsoft.com/azure/architecture/web-apps/guides/reliable-web-app/overview) patterns guidance for building web apps with enterprise app patterns.
 
-<p align="center">Most Powerful & Comprehensive Free Bootstrap 5 .Net Core MVC Admin Dashboard Template built for developers!</p>
+Sample ASP.NET Core reference application, powered by Microsoft, demonstrating a single-process (monolithic) application architecture and deployment model. If you're new to .NET development, read the [Getting Started for Beginners](https://github.com/dotnet-architecture/eShopOnWeb/wiki/Getting-Started-for-Beginners) guide.
 
-![GitHub](https://img.shields.io/github/license/themeselection/materio-bootstrap-html-aspnet-core-mvc-admin-template-free) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/themeselection/materio-bootstrap-html-aspnet-core-mvc-admin-template-free) ![GitHub issues](https://img.shields.io/github/issues/themeselection/materio-bootstrap-html-aspnet-core-mvc-admin-template-free) ![GitHub closed issues](https://img.shields.io/github/issues-closed/themeselection/materio-bootstrap-html-aspnet-core-mvc-admin-template-free) ![Twitter Follow](https://img.shields.io/twitter/follow/Theme_Selection?style=social)
+A list of Frequently Asked Questions about this repository can be found [here](https://github.com/dotnet-architecture/eShopOnWeb/wiki/Frequently-Asked-Questions).
 
-<kbd>[![Materio - Free Bootstrap 5 .Net Core MVC Admin Template Demo Screenshot](https://cdn.jsdelivr.net/gh/themeselection/ts-assets/materio/materio-bootstrap-aspnet-core-mvc-admin-template-free/banner/banner.png)](https://themeselection.com/item/materio-free-aspnet-core-mvc-admin-template/)</kbd>
+## Overview Video
 
-## Introduction 🚀
+[Steve "ardalis" Smith](https://twitter.com/ardalis) recorded [a live stream providing an overview of the eShopOnWeb reference app](https://www.youtube.com/watch?v=vRZ8ucGac8M&ab_channel=Ardalis) in October 2020. 
 
-If you’re a developer looking for the most Powerful & comprehensive [**Free Bootstrap 5 ASPNET Core MVC Admin Template**](https://themeselection.com/item/materio-bootstrap-html-aspnet-core-mvc-admin-template-free/) built for developers, rich with features, and highly customizable look no further than Materio. We’ve followed the highest industry standards to bring you the very best admin template that is not only fast and easy to use but highly scalable. Offering ultimate convenience and flexibility, you’ll be able to build whatever application you want with very little hassle.
+## eBook
 
-Build premium quality applications with ease. Use our innovative [Aspnet Core MVC Bootstrap admin template](https://themeselection.com/item/category/bootstrap-admin-templates/) to create eye-catching, high-quality WebApps. Your apps will be completely responsive, ensuring they’ll look stunning and function flawlessly on desktops, tablets, and mobile devices.
+This reference application is meant to support the free .PDF download ebook: [Architecting Modern Web Applications with ASP.NET Core and Azure](https://aka.ms/webappebook), updated to **ASP.NET Core 8.0**. [Also available in ePub/mobi formats](https://dotnet.microsoft.com/learn/web/aspnet-architecture).
 
-[View Demo](https://demos.themeselection.com/materio-aspnet-core-mvc-admin-template-free/html/)
+You can also read the book in online pages at the .NET docs here: 
+https://docs.microsoft.com/dotnet/architecture/modern-web-apps-azure/
 
-## Installation ⚒️
+[<img src="https://dotnet.microsoft.com/blob-assets/images/e-books/aspnet.png" height="300" />](https://dotnet.microsoft.com/learn/web/aspnet-architecture)
 
-Please [visit](https://demos.themeselection.com/materio-bootstrap-html-admin-template/documentation/net-core-mvc-init-installation.html) our docs for installation guide.
+The **eShopOnWeb** sample is related to the [eShopOnContainers](https://github.com/dotnet/eShopOnContainers) sample application which, in that case, focuses on a microservices/containers-based application architecture. However, **eShopOnWeb** is much simpler in regards to its current functionality and focuses on traditional Web Application Development with a single deployment.
 
-## What's Included 📦
+The goal for this sample is to demonstrate some of the principles and patterns described in the [eBook](https://aka.ms/webappebook). It is not meant to be an eCommerce reference application, and as such it does not implement many features that would be obvious and/or essential to a real eCommerce application.
 
-- Dashboard
-  - Analytics
-- Layouts
-  - Without menu
-  - Without Navbar
-  - Container
-  - Fluid
-  - Blank
-- Pages
-  - Account Settings
-  - Login
-  - Register
-  - Forgot Password
-  - Error
-  - Under Maintenance
-- Cards
-- User Interface
-  - **All Bootstrap Components**
-- Extended UI
-  - Perfect Scrollbar
-  - Text Divider
-- Material Design Icons (MDI)
-- Form Elements
-  - Basic Inputs
-  - Input Groups
-- Form Layout
-  - Vertical Form
-  - Horizontal Form
-- Tables
+> ### VERSIONS
+> #### The `main` branch is currently running ASP.NET Core 8.0.
+> #### Older versions are tagged.
 
-## What's in Premium Version 💎
+## Topics (eBook TOC)
 
-| Materio Free Version                                                                       | Materio Premium Version                                                                                                            |
-| ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| [Demo](https://demos.themeselection.com/materio-aspnet-core-mvc-admin-template-free/html/) | [Demo](https://demos.themeselection.com/materio-aspnet-core-mvc-admin-template/html/vertical-menu-template/)                       |
-| [Download](https://themeselection.com/item/materio-free-aspnet-core-mvc-admin-template/)   | [Purchase](https://themeselection.com/item/materio-aspnet-core-mvc-admin-template/)                                                |
-| Single vertical Menu                                                                       | Vertical Menu + Horizontal Menu                                                                                                    |
-| Simple Light Style                                                                         | Light & Dark Style                                                                                                                 |
-| Default Theme                                                                              | Default, Semi Dark & Bordered Themes                                                                                               |
-| Fixed Layout(Menu)                                                                         | Fixed & Static Layout(Menu)                                                                                                        |
-| 1 Simple Dashboard                                                                         | 5 Niche Dashboards                                                                                                                 |
-| -                                                                                          | Multiple Ready Applications like Calendar, Invoice, Users List, Users View, Roles and Permission,Transactions(CRUD) etc.           |
-| Simple From Elements                                                                       | Advance form elements, validation & form wizard                                                                                    |
-| Basic Cards                                                                                | Basic, Advance, Statistics, Analytics, Gamification and Actions Cards                                                              |
-| Basic User Interface(Components)                                                           | Advance and Custom User Interfaces(Components)                                                                                     |
-| Two Extended Components                                                                    | Twelve Ready to use Extended Components                                                                                            |
-| -                                                                                          | Quick Search - Quickly navigate between pages (w/ hotkey support)                                                                  |
-| Basic Pages                                                                                | Authentication Pages in 2 Variants + Ready-to-use pages like User Profile, Account Settings, FAQ, Help Center, Pricing, Misc, etc. |
-| -                                                                                          | 3D Characters + Illustrations                                                                                                      |
-| Basic tables                                                                               | Advanced tables                                                                                                                    |
-| -                                                                                          | Quick customization using theme config file                                                                                        |
-| -                                                                                          | Leaflet Maps                                                                                                                       |
-| 1 Chart Library                                                                            | 2 Chart Libraries                                                                                                                  |
-| -                                                                                          | Multiple Navbar & Menu Options                                                                                                     |
-| -                                                                                          | Starter-kit                                                                                                                        |
-| -                                                                                          | Internationalization support, Docker support                                                                                       |
-| -                                                                                          | RTL Support                                                                                                                        |
-| Regular Support                                                                            | Priority Support                                                                                                                   |
-| Detailed Documentation                                                                     | Detailed Documentation                                                                                                             |
+- Introduction
+- Characteristics of Modern Web Applications
+- Choosing Between Traditional Web Apps and SPAs
+- Architectural Principles
+- Common Web Application Architectures
+- Common Client Side Technologies
+- Developing ASP.NET Core MVC Apps
+- Working with Data in ASP.NET Core Apps
+- Testing ASP.NET Core MVC Apps
+- Development Process for Azure-Hosted ASP.NET Core Apps
+- Azure Hosting Recommendations for ASP.NET Core Web Apps
 
-## Documentation 📜
+## Running the sample using Azd template
 
-<!-- If you have docs in wiki then use below line -->
+The store's home page should look like this:
 
-Check GitHub [Wiki](https://github.com/themeselection/materio-bootstrap-html-aspnet-core-mvc-admin-template-free/wiki) of this repository.
+![eShopOnWeb home page screenshot](https://user-images.githubusercontent.com/782127/88414268-92d83a00-cdaa-11ea-9b4c-db67d95be039.png)
 
-Check out our live [Documentation](https://demos.themeselection.com/materio-bootstrap-html-admin-template/documentation/net-core-mvc-introduction.html)
+The Azure Developer CLI (`azd`) is a developer-centric command-line interface (CLI) tool for creating Azure applications.
 
-## Browser Support 🖥️
+You need to install it before running and deploying with Azure Developer CLI.
 
-![chrome](https://github.com/nuxt/nuxt/assets/47495003/bbb6d7b0-2db6-4af4-abdc-a73de71dd287)
-&nbsp;&nbsp;![firefox](https://github.com/nuxt/nuxt/assets/47495003/bca1f2d0-d597-453b-8525-5c94e36bfc33)
-&nbsp;&nbsp;![safari](https://github.com/nuxt/nuxt/assets/47495003/8ecbb395-78fb-40fb-bb59-7301bf8a7e5d)
-&nbsp;&nbsp;![Microsoft Edge](https://github.com/nuxt/nuxt/assets/47495003/f945821b-0cbd-464d-8103-824d4d5c4e9a)
+### Windows
 
-\*_It also supports other browser which implemented latest CSS standards_
+```powershell
+powershell -ex AllSigned -c "Invoke-RestMethod 'https://aka.ms/install-azd.ps1' | Invoke-Expression"
+```
 
-## Contributing 🦸
+### Linux/MacOS
 
-Contribution are always welcome and recommended! Here is how:
+```
+curl -fsSL https://aka.ms/install-azd.sh | bash
+```
 
-- Fork the repository ([here is the guide](https://docs.github.com/en/get-started/quickstart/fork-a-repo)).
-- Clone to your machine `git clone https://github.com/themeselection/materio-bootstrap-html-aspnet-core-mvc-admin-template-free` Make your changes
-- Create a pull request
+And you can also install with package managers, like winget, choco, and brew. For more details, you can follow the documentation: https://aka.ms/azure-dev/install.
 
-### Contribution Requirements 🧰
+After logging in with the following command, you will be able to use the azd cli to quickly provision and deploy the application.
 
-- When you contribute, you agree to give a non-exclusive license to ThemeSelection to use that contribution in any context as we (ThemeSelection) see appropriate.
-- If you use content provided by another party, it must be appropriately licensed using an open source license.
-- Contributions are only accepted through Github pull requests.
-- Finally, contributed code must work in all supported browsers (see above for browser support).
+```
+azd auth login
+```
 
-## Changelog 📆
+Then, execute the `azd init` command to initialize the environment.
+```
+azd init -t dotnet-architecture/eShopOnWeb 
+```
 
-Please refer to the [CHANGELOG](CHANGELOG.md) file. We will add detailed release notes to each new release.
+Run `azd up` to provision all the resources to Azure and deploy the code to those resources.
+```
+azd up 
+```
 
-## Support 🧑🏻‍💻
+According to the prompt, enter an `env name`, and select `subscription` and `location`, these are the necessary parameters when you create resources. Wait a moment for the resource deployment to complete, click the web endpoint and you will see the home page.
 
-For free products, enjoy community support via GitHub issues. Upgrade to Premium for dedicated support from our expert team.
+**Notes:**
+1. Considering security, we store its related data (id, password) in the **Azure Key Vault** when we create the database, and obtain it from the Key Vault when we use it. This is different from directly deploying applications locally.
+2. The resource group name created in azure portal will be **rg-{env name}**.
 
-## License &copy;
+You can also run the sample directly locally (See below).
 
-- Copyright © [ThemeSelection](https://themeselection.com/)
-- Licensed under [MIT](LICENSE)
-- All our free items are Open Source and licensed under MIT. You can use our free items for personal as well as commercial purposes. We just need an attribution from your end. Copy the below link and paste it at the footer of your web application or project.
-  ```html
-  <a href="https://themeselection.com/">ThemeSelection</a>
-  ```
+## Running the sample locally
+Most of the site's functionality works with just the web application running. However, the site's Admin page relies on Blazor WebAssembly running in the browser, and it must communicate with the server using the site's PublicApi web application. You'll need to also run this project. You can configure Visual Studio to start multiple projects, or just go to the PublicApi folder in a terminal window and run `dotnet run` from there. After that from the Web folder you should run `dotnet run --launch-profile Web`. Now you should be able to browse to `https://localhost:5001/`. The admin part in Blazor is accessible to `https://localhost:5001/admin`  
 
-## Also Available In
+Note that if you use this approach, you'll need to stop the application manually in order to build the solution (otherwise you'll get file locking errors).
 
-<p>
-   <!-- Figma -->
-   <a href="https://themeselection.com/item/materio-figma-admin-dashboard-ui-kit/" target="_blank"><picture><source width="auto" height="74px" media="(prefers-color-scheme: dark)" srcset="https://github.com/microsoft/vscode/assets/47495003/0318a6c8-4f9b-4cf6-af5e-d357f909ea2b"><source width="auto" height="74px" media="(prefers-color-scheme: light)" srcset="https://github.com/microsoft/vscode/assets/47495003/47f21dfe-c1fc-4a7d-859e-4d98f8cdded1"><img width="auto" height="74px" alt="html" src="https://github.com/microsoft/vscode/assets/47495003/47f21dfe-c1fc-4a7d-859e-4d98f8cdded1"></picture></img></a>&nbsp;&nbsp;
-   <!-- HTML -->
-   <a href="https://themeselection.com/item/materio-bootstrap-html-admin-template/" target="_blank"><picture><source width="auto" height="74px" media="(prefers-color-scheme: dark)" srcset="https://github.com/microsoft/vscode/assets/47495003/5fe77c46-2e4c-475a-8dec-e30e2badddee"><source width="auto" height="74px" media="(prefers-color-scheme: light)" srcset="https://github.com/microsoft/vscode/assets/47495003/3f5decd8-cd99-4ed3-aa76-528ca061385b"><img width="auto" height="74px" alt="html" src="https://github.com/microsoft/vscode/assets/47495003/3f5decd8-cd99-4ed3-aa76-528ca061385b"></picture></img></a>&nbsp;&nbsp;
-   <!-- HTML + Laravel -->
-   <a href="https://themeselection.com/item/materio-bootstrap-laravel-admin-template/" target="_blank"><picture><source width="auto" height="74px" media="(prefers-color-scheme: dark)" srcset="https://github.com/microsoft/vscode/assets/47495003/efe420e4-9863-41b7-9eda-47ea94f21a62"><source width="auto" height="74px" media="(prefers-color-scheme: light)" srcset="https://github.com/microsoft/vscode/assets/47495003/be3b86e0-4d5e-4736-bf89-4267fb4d6710"><img width="auto" height="74px" alt="html_laravel" src="https://github.com/microsoft/vscode/assets/47495003/be3b86e0-4d5e-4736-bf89-4267fb4d6710"></picture></img></a>&nbsp;&nbsp;
-   <!-- HTML + Django -->
-   <a href="https://themeselection.com/item/materio-bootstrap-django-admin-template/" target="_blank"><picture><source width="auto" height="74px" media="(prefers-color-scheme: dark)" srcset="https://github.com/microsoft/vscode/assets/47495003/3c87d33b-1223-4aaa-a652-388dcb714c98"><source width="auto" height="74px" media="(prefers-color-scheme: light)" srcset="https://github.com/microsoft/vscode/assets/47495003/51db1947-eac1-466f-87fd-5a209010fe9c"><img width="auto" height="74px" alt="html_django" src="https://github.com/microsoft/vscode/assets/47495003/51db1947-eac1-466f-87fd-5a209010fe9c"></picture></img></a>&nbsp;&nbsp;
-   <!-- .Net Core -->
-   <a href="https://themeselection.com/item/materio-aspnet-core-mvc-admin-template/" target="_blank"><picture><source width="auto" height="74px" media="(prefers-color-scheme: dark)" srcset="https://github.com/microsoft/vscode/assets/47495003/6327fd7b-9c54-4189-a852-28551ad0e002"><source width="auto" height="74px" media="(prefers-color-scheme: light)" srcset="https://github.com/microsoft/vscode/assets/47495003/9856e9d5-021f-4573-902a-702e80dd0102"><img width="auto" height="74px" alt="net_core" src="https://github.com/microsoft/vscode/assets/47495003/9856e9d5-021f-4573-902a-702e80dd0102"></picture></img></a>&nbsp;&nbsp;
-   <!-- NextJS -->
-   <a href="https://themeselection.com/item/materio-mui-react-nextjs-admin-template/" target="_blank"><picture><source width="auto" height="74px" media="(prefers-color-scheme: dark)" srcset="https://github.com/microsoft/vscode/assets/47495003/66344629-6d21-4f92-9078-f479b39cb34e"><source width="auto" height="74px" media="(prefers-color-scheme: light)" srcset="https://github.com/microsoft/vscode/assets/47495003/e1daf4e1-3fa5-4a44-969a-6143ddd67310"><img width="auto" height="74px" alt="next.js" src="https://github.com/microsoft/vscode/assets/47495003/e1daf4e1-3fa5-4a44-969a-6143ddd67310"></picture></img></a>&nbsp;&nbsp;
-   <!-- React -->
-   <a href="https://themeselection.com/item/materio-mui-react-nextjs-admin-template/" target="_blank"><picture><source width="auto" height="74px" media="(prefers-color-scheme: dark)" srcset="https://github.com/microsoft/vscode/assets/47495003/3877046e-c652-4b3d-99e9-2e134da1d6cf"><source width="auto" height="74px" media="(prefers-color-scheme: light)" srcset="https://github.com/microsoft/vscode/assets/47495003/8c8c940e-d8f9-4213-a7f7-f8bc4968f169"><img width="auto" height="74px" alt="react" src="https://github.com/microsoft/vscode/assets/47495003/8c8c940e-d8f9-4213-a7f7-f8bc4968f169"></picture></img></a>&nbsp;&nbsp;
-   <!-- Vue -->
-   <a href="https://themeselection.com/item/materio-vuetify-vuejs-admin-template/" target="_blank"><picture><source width="auto" height="74px" media="(prefers-color-scheme: dark)" srcset="https://github.com/microsoft/vscode/assets/47495003/881bbbb8-d1c9-421c-9bce-4ea43dfa9e6e"><source width="auto" height="74px" media="(prefers-color-scheme: light)" srcset="https://github.com/microsoft/vscode/assets/47495003/b02d6473-0345-42c2-be58-e648806104fa"><img width="auto" height="74px" alt="vue" src="https://github.com/microsoft/vscode/assets/47495003/b02d6473-0345-42c2-be58-e648806104fa"></picture></img></a>&nbsp;&nbsp;
-   <!-- Vue + Laravel -->
-   <a href="https://themeselection.com/item/materio-vuetify-vuejs-laravel-admin-template/" target="_blank"><picture><source width="auto" height="74px" media="(prefers-color-scheme: dark)" srcset="https://github.com/microsoft/vscode/assets/47495003/20b6428e-3fa5-4f80-a389-9e4cd732c2de"><source width="auto" height="74px" media="(prefers-color-scheme: light)" srcset="https://github.com/microsoft/vscode/assets/47495003/3008d3eb-7b5b-4d9c-8563-837744a901da"><img width="auto" height="74px" alt="vue_laravel" src="https://github.com/microsoft/vscode/assets/47495003/3008d3eb-7b5b-4d9c-8563-837744a901da"></picture></img></a>&nbsp;&nbsp;
-</p>
+After cloning or downloading the sample you must setup your database. 
+To use the sample with a persistent database, you will need to run its Entity Framework Core migrations before you will be able to run the app.
 
-<!-- Add other pro variants here. You can get the logo URL from here: https://icones.js.org/collection/logos -->
+You can also run the samples in Docker (see below).
 
-## Looking For Premium Admin Templates ?? 👀
+### Configuring the sample to use SQL Server
 
-**[ThemeSelection](https://themeselection.com/)** provides Selected high quality, modern design, professional and easy-to-use **Fully Coded Dashboard Templates & UI Kits** to create your applications faster!
+1. By default, the project uses a real database. If you want an in memory database, you can add in the `appsettings.json` file in the Web folder
 
-- [Bootstrap Admin Templates](https://themeselection.com/products/category/bootstrap-admin-templates/)
-- [VueJS Admin Templates](https://themeselection.com/products/category/vuejs-admin-templates/)
-- [Laravel Admin Templates](https://themeselection.com/products/category/laravel-admin-templates/)
-- [Django Admin Templates](https://themeselection.com/item/category/django-admin-template/)
-- [React (NextJS) Admin Templates](https://themeselection.com/item/category/next-js-admin-template/)
-- [ASP.Net Core Admin Templates](https://themeselection.com/item/category/asp-net-dashboard/)
-- [Free UI Kits](https://themeselection.com/products/category/free-ui-kits/)
+    ```json
+   {
+       "UseOnlyInMemoryDatabase": true
+   }
+    ```
 
-If you want to [Download Free Admin Templates](https://themeselection.com/products/category/download-free-admin-templates/) like Materio Aspnet Core MVC Free then do visit [ThemeSelection](https://themeselection.com/).
+1. Ensure your connection strings in `appsettings.json` point to a local SQL Server instance.
+1. Ensure the tool EF was already installed. You can find some help [here](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet)
 
-## Useful Links 🎁
+    ```
+    dotnet tool update --global dotnet-ef
+    ```
 
-- [Vue CheatSheet](https://vue-cheatsheet.themeselection.com/)
-- [Freebies](https://themeselection.com/products/category/download-free-admin-templates/)
-- [Download Free Admin Templates](https://themeselection.com/products/category/download-free-admin-templates/)
-- [Bootstrap 5 CheatSheet](https://bootstrap-cheatsheet.themeselection.com/)
+1. Open a command prompt in the Web folder and execute the following commands:
 
-## Social Media :earth_africa:
+    ```
+    dotnet restore
+    dotnet tool restore
+    dotnet ef database update -c catalogcontext -p ../Infrastructure/Infrastructure.csproj -s Web.csproj
+    dotnet ef database update -c appidentitydbcontext -p ../Infrastructure/Infrastructure.csproj -s Web.csproj
+    ```
 
-- [Twitter](https://twitter.com/Theme_Selection)
-- [Facebook](https://www.facebook.com/ThemeSelections/)
-- [Pinterest](https://pinterest.com/themeselect/)
-- [Instagram](https://www.instagram.com/themeselection/)
-- [Discord](https://discord.gg/kBHkY7DekX)
-- [YouTube](https://www.youtube.com/channel/UCuryo5s0CW4aP83itLjIdZg)
+    These commands will create two separate databases, one for the store's catalog data and shopping cart information, and one for the app's user credentials and identity data.
+
+1. Run the application.
+
+    The first time you run the application, it will seed both databases with data such that you should see products in the store, and you should be able to log in using the demouser@microsoft.com account.
+
+    Note: If you need to create migrations, you can use these commands:
+
+    ```
+    -- create migration (from Web folder CLI)
+    dotnet ef migrations add InitialModel --context catalogcontext -p ../Infrastructure/Infrastructure.csproj -s Web.csproj -o Data/Migrations
+
+    dotnet ef migrations add InitialIdentityModel --context appidentitydbcontext -p ../Infrastructure/Infrastructure.csproj -s Web.csproj -o Identity/Migrations
+    ```
+
+## Running the sample in the dev container
+
+This project includes a `.devcontainer` folder with a [dev container configuration](https://containers.dev/), which lets you use a container as a full-featured dev environment.
+
+You can use the dev container to build and run the app without needing to install any of its tools locally! You can work in GitHub Codespaces or the VS Code Dev Containers extension.
+
+Learn more about using the dev container in its [readme](/.devcontainer/devcontainerreadme.md).
+
+## Running the sample using Docker
+
+You can run the Web sample by running these commands from the root folder (where the .sln file is located):
+
+```
+docker-compose build
+docker-compose up
+```
+
+You should be able to make requests to localhost:5106 for the Web project, and localhost:5200 for the Public API project once these commands complete. If you have any problems, especially with login, try from a new guest or incognito browser instance.
+
+You can also run the applications by using the instructions located in their `Dockerfile` file in the root of each project. Again, run these commands from the root of the solution (where the .sln file is located).
+
+## Community Extensions
+
+We have some great contributions from the community, and while these aren't maintained by Microsoft we still want to highlight them.
+
+[eShopOnWeb VB.NET](https://github.com/VBAndCs/eShopOnWeb_VB.NET) by Mohammad Hamdy Ghanem
+
+[FShopOnWeb](https://github.com/NitroDevs/FShopOnWeb) An F# take on eShopOnWeb by Sean G. Wright and Kyle McMaster

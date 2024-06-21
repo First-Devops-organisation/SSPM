@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/AspnetCoreMvcFull/AspnetCoreMvcFull.csproj",
+                "${workspaceFolder}/src/Web/Web.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/AspnetCoreMvcFull/AspnetCoreMvcFull.csproj",
+                "${workspaceFolder}/src/Web/Web.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -32,8 +32,9 @@
             "args": [
                 "watch",
                 "run",
-                "--project",
-                "${workspaceFolder}/AspnetCoreMvcFull/AspnetCoreMvcFull.csproj"
+                "${workspaceFolder}/src/Web/Web.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
         }
