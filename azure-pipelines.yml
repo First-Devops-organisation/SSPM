@@ -1,52 +1,60 @@
-# ASP.NET Core (.NET Framework)
-# Build and test ASP.NET Core projects targeting the full .NET Framework.
-# Add steps that publish symbols, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
-
 trigger:
-- none
+  branches:
+    include:
+      - '*'
+      - refs/tags/*
 
-pool:
-  vmImage: 'windows-latest'
+jobs:
 
-variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+- job: Build_Windows
+  pool:
+    vmImage: 'windows-latest'
+  steps:
+  - task: UseDotNet@2
+    inputs:
+      useGlobalJson: true
+  - bash: |
+      ./build.sh
+    displayName: 'Build'
+    env:
+      COVERALLS_REPO_TOKEN: '$(COVERALLS_REPO_TOKEN)'
+  - bash: |
+      ./build-sample.sh
+    displayName: 'Build Sample'
+  - task: PublishCodeCoverageResults@1
+    displayName: 'Publish code coverage'
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: '$(Build.SourcesDirectory)/cobertura.xml'
 
-steps:
-- task: NuGetToolInstaller@1
+- job: Build_Linux
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - task: UseDotNet@2
+    inputs:
+      useGlobalJson: true
+  - bash: |
+      ./build.sh
+    displayName: 'Build'
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
-
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet test'
-  inputs:
-    command: 'test'
-    projects: '**/*.csproj'
-    arguments: '--configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
-
-- task: PublishCodeCoverageResults@1
-  displayName: 'Publish code coverage'
-  inputs:
-          codeCoverageTool: 'Cobertura'
-          summaryFileLocation: '**/*cobertura.xml'
-
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'publish'
-    publishWebProjects: true
+- job: Push_Package
+  dependsOn:
+    - Build_Windows
+    - Build_Linux
+  condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - task: UseDotNet@2
+    inputs:
+      useGlobalJson: true
+  - bash: |
+      export Version=${TagName:1}
+      dotnet pack -c Release -o nupkg
+      dotnet nuget push "nupkg/*.nupkg" -k $NUGET_KEY -s https://api.nuget.org/v3/index.json --skip-duplicate
+    env:
+      TagName: '$(Build.SourceBranchName)'
+      NUGET_KEY: '$(NUGET_KEY)'
+    displayName: 'Release'
+    
