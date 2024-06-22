@@ -1,172 +1,118 @@
-# MiniCover
-Code Coverage Tool for .NET Core
+# eShop Reference Application - "AdventureWorks"
 
-[![Build Status](https://dev.azure.com/lucaslorentzlara/lucaslorentzlara/_apis/build/status/lucaslorentz.minicover?branchName=master)](https://dev.azure.com/lucaslorentzlara/lucaslorentzlara/_build/latest?definitionId=3&branchName=master)
-[![Nuget](https://img.shields.io/nuget/v/minicover)](https://www.nuget.org/packages/MiniCover/)
-[![Coverage Status](https://coveralls.io/repos/github/lucaslorentz/minicover/badge.svg?branch=master)](https://coveralls.io/github/lucaslorentz/minicover?branch=master)
+A reference .NET application implementing an e-commerce website using a services-based architecture.
 
-## Supported .NET Core SDKs
-- 6.0 (Global tool or local tool)
-- 7.0 (Global tool or local tool)
-- 8.0 (Global tool or local tool)
+![eShop Reference Application architecture diagram](img/eshop_architecture.png)
 
-## Installation
-MiniCover can be installed as a global tool:
-```
-dotnet tool install --global minicover
-```
-Or local tool:
-```
-dotnet tool install minicover
-```
+![eShop homepage screenshot](img/eshop_homepage.png)
 
-## Commands
-This is a simplified documentation of MiniCover commands and options.
+## Getting Started
 
-Use `--help` for more information:
-```
-minicover --help
-```
+### Prerequisites
 
-**When installed as local tool, MiniCover commands must be prefixed with `dotnet`.** Example:
-```
-dotnet minicover --help
+- Clone the eShop repository: https://github.com/Azure-Samples/eshopOnAzure
+- Install & start Docker Desktop: https://docs.docker.com/engine/install/
+
+#### Windows with Visual Studio
+- Install [Visual Studio 2022 version 17.10 or newer](https://visualstudio.microsoft.com/vs/).
+  - Select the following workloads:
+    - `ASP.NET and web development` workload.
+    - `.NET Aspire SDK` component in `Individual components`.
+    - Optional: `.NET Multi-platform App UI development` to run client apps
+
+#### Mac, Linux, & Windows without Visual Studio
+- Install the latest [.NET 8 SDK](https://dot.net/download?cid=eshop)
+- Install the [.NET Aspire workload](https://learn.microsoft.com/dotnet/aspire/fundamentals/setup-tooling?tabs=dotnet-cli%2Cunix#install-net-aspire) with the following commands:
+```powershell
+dotnet workload update
+dotnet workload install aspire
+dotnet restore eShop.Web.slnf
 ```
 
-### Instrument
+> Note: These commands may require `sudo`
+
+- Optional: Install [Visual Studio Code with C# Dev Kit](https://code.visualstudio.com/docs/csharp/get-started)
+- Optional: Install [.NET MAUI Workload](https://learn.microsoft.com/dotnet/maui/get-started/installation?tabs=visual-studio-code)
+
+> Note: When running on Mac with Apple Silicon (M series processor), Rosetta 2 for grpc-tools. 
+
+### Running the solution
+
+> [!WARNING]
+> Remember to ensure that Docker is started
+
+* (Windows only) Run the application from Visual Studio:
+ - Open the `eShop.Web.slnf` file in Visual Studio
+ - Ensure that `eShop.AppHost.csproj` is your startup project
+ - Hit Ctrl-F5 to launch Aspire
+
+* Or run the application from your terminal:
+```powershell
+dotnet run --project src/eShop.AppHost/eShop.AppHost.csproj
 ```
-minicover instrument
-```
-
-Use this command to instrument assemblies to record code coverage.
-
-It is based on the following main options:
-
-|option|description|type|default|
-|-|-|-|-|
-|**sources**|source files to track coverage|glob|`src/**/*.cs`|
-|**exclude-sources**|exceptions to source option|glob|`**/bin/**/*.cs` and `**/obj/**/*.cs`|
-|**tests**|test files used to recognize test methods|glob|`tests/**/*.cs` and `test/**/*.cs`|
-|**exclude-tests**|exceptions to tests option|glob|`**/bin/**/*.cs` and `**/obj/**/*.cs`|
-|**assemblies**|assemblies considered for instrumentation|glob|`**/*.dll`|
-|**exclude-assemblies**|Exceptions to assemblies option|glob|`**/obj/**/*.dll`|
-
-*Note 1: Assemblies not related to sources or tests are automatically ignored.*
-
-*Note 2: [Supported syntax](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.filesystemglobbing.matcher?view=dotnet-plat-ext-3.0#remarks) for glob values.*
-
-*Note 3: You can repeat glob options to represent multiple values. Example: `--sources "a/**/*.cs" --sources "b/**/*.cs"`*
-
-This command also generates a **coverage.json** file with information about the instrumented code.   
-
-### Uninstrument
-```
-minicover uninstrument
-````
-
-Use this command to revert the instrumentation based on **coverage.json** file.
-
-**Make sure you call uninstrument before publishing or packing your application.**
-
-### Reset
-```
-minicover reset
-````
-
-Use this command to reset the recorded coverage so far.
-
-### Report
-```
-minicover report
-````
-
-Use this command to print a coverage report in the console.
-
-The command exits with failure if the coverage doesn't meet a specific threshold (90% by default).
-
-### More commands
-
-- **cloverreport**: Write an Clover-formatted XML report to file
-- **coberturareport**: Write a cobertura XML report to file
-- **coverallsreport**: Prepare and/or submit coveralls reports
-- **htmlreport**: Write html report to folder
-- **opencoverreport**: Write an OpenCover-formatted XML report to file
-- **xmlreport**: Write an NCover-formatted XML report to file
-
-Use `--help` for more information.
-
-## Build script example
-```shell
-dotnet restore
-dotnet build
-
-# Instrument
-minicover instrument
-
-# Reset hits
-minicover reset
-
-dotnet test --no-build
-
-# Uninstrument
-minicover uninstrument
-
-# Create html reports inside folder coverage-html
-minicover htmlreport --threshold 90
-
-# Console report
-minicover report --threshold 90
+then look for lines like this in the console output in order to find the URL to open the Aspire dashboard:
+```sh
+Login to the dashboard at: http://localhost:19888/login?t=uniquelogincodeforyou
 ```
 
-## Ignore coverage files
+> You may need to install ASP.NET Core HTTPS development certificates first, and then close all browser tabs. Learn more at https://aka.ms/aspnet/https-trust-dev-cert
 
-Add the following to your .gitignore file to ignore code coverage results:
-```
-coverage-html
-coverage-hits
-coverage.json
-```
+### Azure Open AI
 
-## Libraries
+When using Azure OpenAI, inside *eShop.AppHost/appsettings.json*, add the following section:
 
-When using MiniCover libraries:
-
-- use dependency injection to create instances
-- use only the main interfaces listed on each package below
-
-By doing that, you reduce the risk of being impacted by future MiniCover changes.
-
-### MiniCover.Core
-
-Main MiniCover operations.
-
-Dependency injection configuration:
-```C#
-services.AddMiniCoverCore();
+```json
+  "ConnectionStrings": {
+    "OpenAi": "Endpoint=xxx;Key=xxx;"
+  }
 ```
 
-Main interfaces:
-- IInstrumenter
-- IUninstrumenter
-- IHitsReader
-- IHitsResetter
+Replace the values with your own. Then, in the eShop.AppHost *Program.cs*, set this value to **true**
 
-### MiniCover.Reports
-
-MiniCover reports.
-
-Dependency injection configuration:
-```C#
-services.AddMiniCoverCore();
-services.AddMiniCoverReports();
+```csharp
+bool useOpenAI = false;
 ```
 
-Main interfaces:
-- ICloverReport
-- ICoberturaReport
-- IConsoleReport
-- ICoverallsReport
-- IHtmlReport
-- IHtmlSourceFileReport
-- INCoverReport
-- IOpenCoverReport
+Here's additional guidance on the [.NET Aspire OpenAI component](https://learn.microsoft.com/dotnet/aspire/azureai/azureai-openai-component?tabs=dotnet-cli). 
+
+### Use Azure Developer CLI
+
+You can use the [Azure Developer CLI](https://aka.ms/azd) to run this project on Azure with only a few commands. Follow the next instructions:
+
+- Install the latest or update to the latest [Azure Developer CLI (azd)](https://aka.ms/azure-dev/install).
+- Log in `azd` (if you haven't done it before) to your Azure account:
+```sh
+azd auth login
+```
+- Initialize `azd` from the root of the repo.
+```sh
+azd init
+```
+- During init:
+  - Select `Use code in the current directory`. Azd will automatically detect the .NET Aspire project.
+  - Confirm `.NET (Aspire)` and continue.
+  - Select which services to expose to the Internet (exposing `webapp` is enough to test the sample).
+  - Finalize the initialization by giving a name to your environment.
+
+- Create Azure resources and deploy the sample by running:
+```sh
+azd up
+```
+Notes:
+  - The operation takes a few minutes the first time it is ever run for an environment.
+  - At the end of the process, `azd` will display the `url` for the webapp. Follow that link to test the sample.
+  - You can run `azd up` after saving changes to the sample to re-deploy and update the sample.
+  - Report any issues to [azure-dev](https://github.com/Azure/azure-dev/issues) repo.
+  - [FAQ and troubleshoot](https://learn.microsoft.com/azure/developer/azure-developer-cli/troubleshoot?tabs=Browser) for azd.
+
+## Contributing
+
+For more information on contributing to this repo, read [the contribution documentation](./CONTRIBUTING.md) and [the Code of Conduct](CODE-OF-CONDUCT.md).
+
+### Sample data
+
+The sample catalog data is defined in [catalog.json](https://github.com/dotnet/eShop/blob/main/src/Catalog.API/Setup/catalog.json). Those product names, descriptions, and brand names are fictional and were generated using [GPT-35-Turbo](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/chatgpt), and the corresponding [product images](https://github.com/dotnet/eShop/tree/main/src/Catalog.API/Pics) were generated using [DALL·E 3](https://openai.com/dall-e-3).
+
+### Other eShops
+
+For a closely related version of this app that is not Azure specific, please view [the dotnet/eShop](https://github.com/dotnet/eshop) repo. These two repos share some common code.
