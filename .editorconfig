@@ -65,6 +65,16 @@ dotnet_naming_rule.constant_fields_should_be_pascal_case.style    = pascal_case_
 dotnet_naming_symbols.constant_fields.applicable_kinds            = field
 dotnet_naming_symbols.constant_fields.applicable_accessibilities  = *
 dotnet_naming_symbols.constant_fields.required_modifiers          = const
+
+# Instance fields are camelCase and start with _
+dotnet_naming_rule.instance_fields_should_be_camel_case.severity = suggestion
+dotnet_naming_rule.instance_fields_should_be_camel_case.symbols = instance_fields
+dotnet_naming_rule.instance_fields_should_be_camel_case.style = instance_field_style
+
+dotnet_naming_symbols.instance_fields.applicable_kinds = field
+
+dotnet_naming_style.instance_field_style.capitalization = camel_case
+dotnet_naming_style.instance_field_style.required_prefix = _
 ###############################
 # C# Coding Conventions       #
 ###############################
@@ -92,8 +102,10 @@ csharp_preferred_modifier_order = public,private,protected,internal,static,exter
 csharp_prefer_braces = true:silent
 csharp_style_deconstructed_variable_declaration = true:suggestion
 csharp_prefer_simple_default_expression = true:suggestion
-csharp_style_prefer_local_over_anonymous_function = true:suggestion
+csharp_style_pattern_local_over_anonymous_function = true:suggestion
 csharp_style_inlined_variable_declaration = true:suggestion
+# Namespaces
+csharp_style_namespace_declarations = file_scoped:warning
 ###############################
 # C# Formatting Rules         #
 ###############################
@@ -129,4 +141,10 @@ csharp_preserve_single_line_blocks = true
 ###############################
 [*.vb]
 # Modifier preferences
-visual_basic_preferred_modifier_order = Partial,Default,Private,Protected,Public,Friend,NotOverridable,Overridable,MustOverride,Overloads,Overrides,MustInherit,NotInheritable,Static,Shared,Shadows,ReadOnly,WriteOnly,Dim,Const,WithEvents,Widening,Narrowing,Custom,Async:suggestion
+visual_basic_preferred_modifier_order = Partial,Default,Private,Protected,Public,Friend,NotOverridable,Overridable,MustOverride,Overloads,Overrides,MustInherit,NotInheritable,Static,Shared,Shadows,ReadOnly,WriteOnly,Dim,Const,WithEvents,Widening,Narrowing,Custom,Async:suggestion###############################
+######################################
+# Configure Nullable Reference Types #
+######################################
+[{**/*Dto.cs,**/*Request.cs,**/*Response.cs}]
+# CS8618: Non-nullable field is uninitialized. Consider declaring as nullable.
+dotnet_diagnostic.CS8618.severity = none

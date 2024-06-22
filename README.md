@@ -1,118 +1,168 @@
-# eShop Reference Application - "AdventureWorks"
+[![Build Status](https://github.com/dotnet-architecture/eShopOnWeb/workflows/eShopOnWeb%20Build%20and%20Test/badge.svg)](https://github.com/dotnet-architecture/eShopOnWeb/actions)
 
-A reference .NET application implementing an e-commerce website using a services-based architecture.
+# Microsoft eShopOnWeb ASP.NET Core Reference Application
 
-![eShop Reference Application architecture diagram](img/eshop_architecture.png)
+Sample ASP.NET Core reference application, powered by Microsoft, demonstrating a single-process (monolithic) application architecture and deployment model. If you're new to .NET development, read the [Getting Started for Beginners](https://github.com/dotnet-architecture/eShopOnWeb/wiki/Getting-Started-for-Beginners) guide.
 
-![eShop homepage screenshot](img/eshop_homepage.png)
+A list of Frequently Asked Questions about this repository can be found [here](https://github.com/dotnet-architecture/eShopOnWeb/wiki/Frequently-Asked-Questions).
 
-## Getting Started
+## Overview Video
 
-### Prerequisites
+[Steve "ardalis" Smith](https://twitter.com/ardalis) recorded [a live stream providing an overview of the eShopOnWeb reference app](https://www.youtube.com/watch?v=vRZ8ucGac8M&ab_channel=Ardalis) in October 2020. 
 
-- Clone the eShop repository: https://github.com/Azure-Samples/eshopOnAzure
-- Install & start Docker Desktop: https://docs.docker.com/engine/install/
+## eBook
 
-#### Windows with Visual Studio
-- Install [Visual Studio 2022 version 17.10 or newer](https://visualstudio.microsoft.com/vs/).
-  - Select the following workloads:
-    - `ASP.NET and web development` workload.
-    - `.NET Aspire SDK` component in `Individual components`.
-    - Optional: `.NET Multi-platform App UI development` to run client apps
+This reference application is meant to support the free .PDF download ebook: [Architecting Modern Web Applications with ASP.NET Core and Azure](https://aka.ms/webappebook), updated to **ASP.NET Core 8.0**. [Also available in ePub/mobi formats](https://dotnet.microsoft.com/learn/web/aspnet-architecture).
 
-#### Mac, Linux, & Windows without Visual Studio
-- Install the latest [.NET 8 SDK](https://dot.net/download?cid=eshop)
-- Install the [.NET Aspire workload](https://learn.microsoft.com/dotnet/aspire/fundamentals/setup-tooling?tabs=dotnet-cli%2Cunix#install-net-aspire) with the following commands:
+You can also read the book in online pages at the .NET docs here: 
+https://docs.microsoft.com/dotnet/architecture/modern-web-apps-azure/
+
+[<img src="https://dotnet.microsoft.com/blob-assets/images/e-books/aspnet.png" height="300" />](https://dotnet.microsoft.com/learn/web/aspnet-architecture)
+
+The **eShopOnWeb** sample is related to the [eShopOnContainers](https://github.com/dotnet/eShopOnContainers) sample application which, in that case, focuses on a microservices/containers-based application architecture. However, **eShopOnWeb** is much simpler in regards to its current functionality and focuses on traditional Web Application Development with a single deployment.
+
+The goal for this sample is to demonstrate some of the principles and patterns described in the [eBook](https://aka.ms/webappebook). It is not meant to be an eCommerce reference application, and as such it does not implement many features that would be obvious and/or essential to a real eCommerce application.
+
+> ### VERSIONS
+> #### The `main` branch is currently running ASP.NET Core 8.0.
+> #### Older versions are tagged.
+
+## Topics (eBook TOC)
+
+- Introduction
+- Characteristics of Modern Web Applications
+- Choosing Between Traditional Web Apps and SPAs
+- Architectural Principles
+- Common Web Application Architectures
+- Common Client Side Technologies
+- Developing ASP.NET Core MVC Apps
+- Working with Data in ASP.NET Core Apps
+- Testing ASP.NET Core MVC Apps
+- Development Process for Azure-Hosted ASP.NET Core Apps
+- Azure Hosting Recommendations for ASP.NET Core Web Apps
+
+## Running the sample using Azd template
+
+The store's home page should look like this:
+
+![eShopOnWeb home page screenshot](https://user-images.githubusercontent.com/782127/88414268-92d83a00-cdaa-11ea-9b4c-db67d95be039.png)
+
+The Azure Developer CLI (`azd`) is a developer-centric command-line interface (CLI) tool for creating Azure applications.
+
+You need to install it before running and deploying with Azure Developer CLI.
+
+### Windows
+
 ```powershell
-dotnet workload update
-dotnet workload install aspire
-dotnet restore eShop.Web.slnf
+powershell -ex AllSigned -c "Invoke-RestMethod 'https://aka.ms/install-azd.ps1' | Invoke-Expression"
 ```
 
-> Note: These commands may require `sudo`
+### Linux/MacOS
 
-- Optional: Install [Visual Studio Code with C# Dev Kit](https://code.visualstudio.com/docs/csharp/get-started)
-- Optional: Install [.NET MAUI Workload](https://learn.microsoft.com/dotnet/maui/get-started/installation?tabs=visual-studio-code)
-
-> Note: When running on Mac with Apple Silicon (M series processor), Rosetta 2 for grpc-tools. 
-
-### Running the solution
-
-> [!WARNING]
-> Remember to ensure that Docker is started
-
-* (Windows only) Run the application from Visual Studio:
- - Open the `eShop.Web.slnf` file in Visual Studio
- - Ensure that `eShop.AppHost.csproj` is your startup project
- - Hit Ctrl-F5 to launch Aspire
-
-* Or run the application from your terminal:
-```powershell
-dotnet run --project src/eShop.AppHost/eShop.AppHost.csproj
 ```
-then look for lines like this in the console output in order to find the URL to open the Aspire dashboard:
-```sh
-Login to the dashboard at: http://localhost:19888/login?t=uniquelogincodeforyou
+curl -fsSL https://aka.ms/install-azd.sh | bash
 ```
 
-> You may need to install ASP.NET Core HTTPS development certificates first, and then close all browser tabs. Learn more at https://aka.ms/aspnet/https-trust-dev-cert
+And you can also install with package managers, like winget, choco, and brew. For more details, you can follow the documentation: https://aka.ms/azure-dev/install.
 
-### Azure Open AI
+After logging in with the following command, you will be able to use the azd cli to quickly provision and deploy the application.
 
-When using Azure OpenAI, inside *eShop.AppHost/appsettings.json*, add the following section:
-
-```json
-  "ConnectionStrings": {
-    "OpenAi": "Endpoint=xxx;Key=xxx;"
-  }
 ```
-
-Replace the values with your own. Then, in the eShop.AppHost *Program.cs*, set this value to **true**
-
-```csharp
-bool useOpenAI = false;
-```
-
-Here's additional guidance on the [.NET Aspire OpenAI component](https://learn.microsoft.com/dotnet/aspire/azureai/azureai-openai-component?tabs=dotnet-cli). 
-
-### Use Azure Developer CLI
-
-You can use the [Azure Developer CLI](https://aka.ms/azd) to run this project on Azure with only a few commands. Follow the next instructions:
-
-- Install the latest or update to the latest [Azure Developer CLI (azd)](https://aka.ms/azure-dev/install).
-- Log in `azd` (if you haven't done it before) to your Azure account:
-```sh
 azd auth login
 ```
-- Initialize `azd` from the root of the repo.
-```sh
-azd init
+
+Then, execute the `azd init` command to initialize the environment.
 ```
-- During init:
-  - Select `Use code in the current directory`. Azd will automatically detect the .NET Aspire project.
-  - Confirm `.NET (Aspire)` and continue.
-  - Select which services to expose to the Internet (exposing `webapp` is enough to test the sample).
-  - Finalize the initialization by giving a name to your environment.
-
-- Create Azure resources and deploy the sample by running:
-```sh
-azd up
+azd init -t dotnet-architecture/eShopOnWeb 
 ```
-Notes:
-  - The operation takes a few minutes the first time it is ever run for an environment.
-  - At the end of the process, `azd` will display the `url` for the webapp. Follow that link to test the sample.
-  - You can run `azd up` after saving changes to the sample to re-deploy and update the sample.
-  - Report any issues to [azure-dev](https://github.com/Azure/azure-dev/issues) repo.
-  - [FAQ and troubleshoot](https://learn.microsoft.com/azure/developer/azure-developer-cli/troubleshoot?tabs=Browser) for azd.
 
-## Contributing
+Run `azd up` to provision all the resources to Azure and deploy the code to those resources.
+```
+azd up 
+```
 
-For more information on contributing to this repo, read [the contribution documentation](./CONTRIBUTING.md) and [the Code of Conduct](CODE-OF-CONDUCT.md).
+According to the prompt, enter an `env name`, and select `subscription` and `location`, these are the necessary parameters when you create resources. Wait a moment for the resource deployment to complete, click the web endpoint and you will see the home page.
 
-### Sample data
+**Notes:**
+1. Considering security, we store its related data (id, password) in the **Azure Key Vault** when we create the database, and obtain it from the Key Vault when we use it. This is different from directly deploying applications locally.
+2. The resource group name created in azure portal will be **rg-{env name}**.
 
-The sample catalog data is defined in [catalog.json](https://github.com/dotnet/eShop/blob/main/src/Catalog.API/Setup/catalog.json). Those product names, descriptions, and brand names are fictional and were generated using [GPT-35-Turbo](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/chatgpt), and the corresponding [product images](https://github.com/dotnet/eShop/tree/main/src/Catalog.API/Pics) were generated using [DALL·E 3](https://openai.com/dall-e-3).
+You can also run the sample directly locally (See below).
 
-### Other eShops
+## Running the sample locally
+Most of the site's functionality works with just the web application running. However, the site's Admin page relies on Blazor WebAssembly running in the browser, and it must communicate with the server using the site's PublicApi web application. You'll need to also run this project. You can configure Visual Studio to start multiple projects, or just go to the PublicApi folder in a terminal window and run `dotnet run` from there. After that from the Web folder you should run `dotnet run --launch-profile Web`. Now you should be able to browse to `https://localhost:5001/`. The admin part in Blazor is accessible to `https://localhost:5001/admin`  
 
-For a closely related version of this app that is not Azure specific, please view [the dotnet/eShop](https://github.com/dotnet/eshop) repo. These two repos share some common code.
+Note that if you use this approach, you'll need to stop the application manually in order to build the solution (otherwise you'll get file locking errors).
+
+After cloning or downloading the sample you must setup your database. 
+To use the sample with a persistent database, you will need to run its Entity Framework Core migrations before you will be able to run the app.
+
+You can also run the samples in Docker (see below).
+
+### Configuring the sample to use SQL Server
+
+1. By default, the project uses a real database. If you want an in memory database, you can add in the `appsettings.json` file in the Web folder
+
+    ```json
+   {
+       "UseOnlyInMemoryDatabase": true
+   }
+    ```
+
+1. Ensure your connection strings in `appsettings.json` point to a local SQL Server instance.
+1. Ensure the tool EF was already installed. You can find some help [here](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet)
+
+    ```
+    dotnet tool update --global dotnet-ef
+    ```
+
+1. Open a command prompt in the Web folder and execute the following commands:
+
+    ```
+    dotnet restore
+    dotnet tool restore
+    dotnet ef database update -c catalogcontext -p ../Infrastructure/Infrastructure.csproj -s Web.csproj
+    dotnet ef database update -c appidentitydbcontext -p ../Infrastructure/Infrastructure.csproj -s Web.csproj
+    ```
+
+    These commands will create two separate databases, one for the store's catalog data and shopping cart information, and one for the app's user credentials and identity data.
+
+1. Run the application.
+
+    The first time you run the application, it will seed both databases with data such that you should see products in the store, and you should be able to log in using the demouser@microsoft.com account.
+
+    Note: If you need to create migrations, you can use these commands:
+
+    ```
+    -- create migration (from Web folder CLI)
+    dotnet ef migrations add InitialModel --context catalogcontext -p ../Infrastructure/Infrastructure.csproj -s Web.csproj -o Data/Migrations
+
+    dotnet ef migrations add InitialIdentityModel --context appidentitydbcontext -p ../Infrastructure/Infrastructure.csproj -s Web.csproj -o Identity/Migrations
+    ```
+
+## Running the sample in the dev container
+
+This project includes a `.devcontainer` folder with a [dev container configuration](https://containers.dev/), which lets you use a container as a full-featured dev environment.
+
+You can use the dev container to build and run the app without needing to install any of its tools locally! You can work in GitHub Codespaces or the VS Code Dev Containers extension.
+
+Learn more about using the dev container in its [readme](/.devcontainer/devcontainerreadme.md).
+
+## Running the sample using Docker
+
+You can run the Web sample by running these commands from the root folder (where the .sln file is located):
+
+```
+docker-compose build
+docker-compose up
+```
+
+You should be able to make requests to localhost:5106 for the Web project, and localhost:5200 for the Public API project once these commands complete. If you have any problems, especially with login, try from a new guest or incognito browser instance.
+
+You can also run the applications by using the instructions located in their `Dockerfile` file in the root of each project. Again, run these commands from the root of the solution (where the .sln file is located).
+
+## Community Extensions
+
+We have some great contributions from the community, and while these aren't maintained by Microsoft we still want to highlight them.
+
+[eShopOnWeb VB.NET](https://github.com/VBAndCs/eShopOnWeb_VB.NET) by Mohammad Hamdy Ghanem
