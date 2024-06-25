@@ -4,21 +4,19 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
-- none
+- none  # Replace with your trigger condition (e.g., branches: include: - main)
 
 pool:
   vmImage: 'windows-latest'
 
 variables:
-  - group: JsonVariableGrp  
+  - group: JsonVariableGrp  # Reference a variable group named 'JsonVariableGrp'
   - name: buildConfiguration
-    value: 'Release' 
+    value: 'Release'  # Define a specific variable 'buildConfiguration' with value 'Release'
   - name: solution
-    value: '**/*.sln'  
+    value: '**/*.sln'  # Define the 'solution' variable with the path to your .sln file
   - name: buildPlatform
-    value: 'Any CPU'  
-  - name: RestoreBuildProjects
-    value: '**/*.csproj'
+    value: 'Any CPU'  # Define the 'buildPlatform' variable with the platform specification
 
 steps:
 - task: NuGetToolInstaller@1
@@ -26,37 +24,52 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
- 
-- task: DotNetCoreCLI@2
-  displayName: Build
+
+- task: VSBuild@1
   inputs:
-    projects: '$(Parameters.RestoreBuildProjects)'
-    arguments: '--configuration $(BuildConfiguration)'
+    solution: '$(solution)'
+    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: VSTest@2
+  inputs:
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
-  displayName: Test
+  displayName: 'dotnet test'
   inputs:
-    command: test
-    projects: '$(Parameters.TestProjects)'
-    arguments: '--configuration $(BuildConfiguration)'
+    command: 'test'
+    projects: '**/*.csproj'
+    arguments: '--configuration $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
 
 - task: PublishCodeCoverageResults@1
   displayName: 'Publish code coverage'
   inputs:
-          codeCoverageTool: 'Cobertura'
-          summaryFileLocation: '**/*cobertura.xml'
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '**/*cobertura.xml'
+
+- task: FileTransform@1
+  displayName: 'File Transform Task'
+  inputs:
+    folderPath: '$(System.DefaultWorkingDirectory)'  # Adjust path as per your project structure
+    fileType: 'json'
+    targetFiles: '**/*.json'
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo "Print Email value"
+      echo "Value: $(Email)"
 
 - task: DotNetCoreCLI@2
-  displayName: Publish
   inputs:
-    command: publish
-    publishWebProjects: True
-    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
-    zipAfterPublish: True
+    command: 'publish'
+    publishWebProjects: true
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
   inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)'
-  condition: succeededOrFailed()
-
+    PathtoPublish: '$(build.artifactStagingDirectory)'
