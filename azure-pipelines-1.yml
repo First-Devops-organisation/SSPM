@@ -1,7 +1,7 @@
 trigger:
   branches:
     include:
-      - none  # Replace with your actual branch name or trigger condition
+      - main  # Replace with your actual branch name or trigger condition
 
 pool:
   vmImage: 'windows-latest'
@@ -39,6 +39,14 @@ jobs:
     inputs:
       codeCoverageTool: 'Cobertura'
       summaryFileLocation: '**/*.cobertura.xml'
+
+  - task: replacetokens@6
+    displayName: 'Replace tokens in configuration files'
+    inputs:
+      rootDirectory: '$(System.DefaultWorkingDirectory)'  # Start searching from the root directory
+      targetFiles: '**/appsettings*.json'  # Example: Replace tokens in appsettings.json files
+      tokenPrefix: '#{'
+      tokenSuffix: '}#'
 
   - task: DotNetCoreCLI@2
     displayName: Publish
