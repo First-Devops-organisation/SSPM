@@ -61,9 +61,9 @@ steps:
 - task: FileTransform@1
   displayName: 'File Transform Task'
   inputs:
-    folderPath: 'SSPM/**/'
+    folderPath: '(System.DefaultWorkingDirectory)/SSPM'
     fileType: 'json'
-    targetFiles: "*.json"
+    targetFiles: "**/*.json"
 
 - task: DotNetCoreCLI@2
   inputs:
