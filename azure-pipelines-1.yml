@@ -59,11 +59,10 @@ steps:
       echo "Value: $(Email)"
 
 - task: FileTransform@1
-  displayName: 'File Transform Task'
   inputs:
-    folderPath: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    folderPath: 'SSPM/**/*'
     fileType: 'json'
-    targetFiles: '**/*.json'
+    targetFiles: '*.json'
 
 - task: DotNetCoreCLI@2
   inputs:
