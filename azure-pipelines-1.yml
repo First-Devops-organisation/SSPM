@@ -61,7 +61,7 @@ steps:
 - task: FileTransform@1
   displayName: 'File Transform Task'
   inputs:
-    folderPath: '(System.DefaultWorkingDirectory)/SSPM'
+    folderPath: 'SSPM/**/'
     fileType: 'json'
     targetFiles: "**/*.json"
 
