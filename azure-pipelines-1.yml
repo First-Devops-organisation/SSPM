@@ -10,13 +10,13 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  - group: JsonVariableGrp  # Reference a variable group named 'JsonVariableGrp'
+  - group: JsonVariableGrp  
   - name: buildConfiguration
-    value: 'Release'  # Define a specific variable 'buildConfiguration' with value 'Release'
+    value: 'Release' 
   - name: solution
-    value: '**/*.sln'  # Define the 'solution' variable with the path to your .sln file
+    value: '**/*.sln'  
   - name: buildPlatform
-    value: 'Any CPU'  # Define the 'buildPlatform' variable with the platform specification
+    value: 'Any CPU'  
 
 steps:
 - task: NuGetToolInstaller@1
@@ -57,6 +57,13 @@ steps:
     script: |
       echo "Print Email value"
       echo "Value: $(Email)"
+
+- task: FileTransform@1
+  displayName: 'File Transform Task'
+  inputs:
+    folderPath: 'SSPM/**/'
+    fileType: 'json'
+    targetFiles: "*.json"
 
 - task: DotNetCoreCLI@2
   inputs:
