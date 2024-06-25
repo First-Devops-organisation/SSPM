@@ -1,61 +1,49 @@
-# ASP.NET Core (.NET Framework)
-# Build and test ASP.NET Core projects targeting the full .NET Framework.
-# Add steps that publish symbols, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
-
 trigger:
-- none  # Replace with your trigger condition (e.g., branches: include: - main)
+  branches:
+    include:
+      - none  # Replace with your actual branch name or trigger condition
 
 pool:
   vmImage: 'windows-latest'
 
 variables:
-  - group: JsonVariableGrp  # Reference a variable group named 'JsonVariableGrp'
-  - name: buildConfiguration
-    value: 'Release'  # Define a specific variable 'buildConfiguration' with value 'Release'
-  - name: solution
-    value: '**/*.sln'  # Define the 'solution' variable with the path to your .sln file
-  - name: buildPlatform
-    value: 'Any CPU'  # Define the 'buildPlatform' variable with the platform specification
+  RestoreBuildProjects: '**/*.csproj'   # Default value for projects to restore
+  TestProjects: '**/*[Tt]ests/*.csproj'  # Default value for test projects
 
-steps:
-- task: NuGetToolInstaller@1
+jobs:
+- job: BuildTestPublish
+  displayName: 'Build, Test, and Publish'
+  steps:
+  - task: DotNetCoreCLI@2
+    displayName: Restore
+    inputs:
+      command: restore
+      projects: '$(RestoreBuildProjects)'
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
+  - task: DotNetCoreCLI@2
+    displayName: Build
+    inputs:
+      command: build
+      projects: '$(RestoreBuildProjects)'
+      arguments: '--configuration $(BuildConfiguration)'
 
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+  - task: DotNetCoreCLI@2
+    displayName: Test
+    inputs:
+      command: test
+      projects: '$(TestProjects)'
+      arguments: '--configuration $(BuildConfiguration)'
 
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+  - task: DotNetCoreCLI@2
+    displayName: Publish
+    inputs:
+      command: publish
+      publishWebProjects: true
+      arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+      zipAfterPublish: true
 
-- task: DotNetCoreCLI@2
-  displayName: 'dotnet test'
-  inputs:
-    command: 'test'
-    projects: '**/*.csproj'
-    arguments: '--configuration $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
-
-- task: PublishCodeCoverageResults@1
-  displayName: 'Publish code coverage'
-  inputs:
-    codeCoverageTool: 'Cobertura'
-    summaryFileLocation: '**/*cobertura.xml'
-
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'publish'
-    publishWebProjects: true
-
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact'
-  inputs:
-    PathtoPublish: '$(build.artifactStagingDirectory)'
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact'
+    inputs:
+      PathtoPublish: '$(build.artifactstagingdirectory)'
+    condition: succeededOrFailed()
