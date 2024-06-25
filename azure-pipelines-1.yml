@@ -10,11 +10,13 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-- group: JsonVariableGrp
-- name: buildConfiguration
-  value: 'Release'
-- name: MailSettings.EMail
-  value: '$(EMail)'   
+  - group: JsonVariableGrp  # Reference a variable group named 'JsonVariableGrp'
+  - name: buildConfiguration
+    value: 'Release'  # Define a specific variable 'buildConfiguration' with value 'Release'
+  - name: solution
+    value: '**/*.sln'  # Define the 'solution' variable with the path to your .sln file
+  - name: buildPlatform
+    value: 'Any CPU'  # Define the 'buildPlatform' variable with the platform specification
 
 steps:
 - task: NuGetToolInstaller@1
