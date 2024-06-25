@@ -32,7 +32,13 @@ jobs:
     inputs:
       command: test
       projects: '$(TestProjects)'
-      arguments: '--configuration $(BuildConfiguration)'
+      arguments: '--configuration $(BuildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
+
+  - task: PublishCodeCoverageResults@1
+    displayName: 'Publish code coverage'
+    inputs:
+      codeCoverageTool: 'Cobertura'
+      summaryFileLocation: '**/*.cobertura.xml'
 
   - task: DotNetCoreCLI@2
     displayName: Publish
