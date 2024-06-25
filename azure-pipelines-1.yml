@@ -51,18 +51,9 @@ steps:
           codeCoverageTool: 'Cobertura'
           summaryFileLocation: '**/*cobertura.xml'
 
-- task: PowerShell@2
+- task: replacetokens@6
   inputs:
-    targetType: 'inline'
-    script: |
-      echo "Print Email value"
-      echo "Value: $(Email)"
-
-- task: FileTransform@1
-  inputs:
-    folderPath: 'SSPM/**/*'
-    fileType: 'json'
-    targetFiles: '*.json'
+    sources: 'appsettings.json'
 
 - task: DotNetCoreCLI@2
   inputs:
