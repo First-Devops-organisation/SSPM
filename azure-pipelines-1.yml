@@ -10,9 +10,11 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+- group: JsonVariableGrp
+- name: buildConfiguration
+  value: 'Release'
+- name: MailSettings.EMail
+  value: '$(EMail)'   
 
 steps:
 - task: NuGetToolInstaller@1
@@ -46,6 +48,13 @@ steps:
   inputs:
           codeCoverageTool: 'Cobertura'
           summaryFileLocation: '**/*cobertura.xml'
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo "Print Email value"
+      echo "Value: $(Email)"
 
 - task: DotNetCoreCLI@2
   inputs:
