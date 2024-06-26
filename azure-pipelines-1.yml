@@ -44,10 +44,7 @@ jobs:
   - task: replacetokens@6
     displayName: 'Replace tokens in configuration files'
     inputs:
-      rootDirectory: '$(System.DefaultWorkingDirectory)'  # Start searching from the root directory
-      targetFiles: '**/appsettings*.json'  # Example: Replace tokens in appsettings.json files
-      tokenPrefix: '#{'
-      tokenSuffix: '}#'
+      sources: '**/appsettings*.json'
 
   - task: DotNetCoreCLI@2
     displayName: Publish
