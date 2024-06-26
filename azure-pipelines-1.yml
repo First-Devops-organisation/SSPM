@@ -53,17 +53,17 @@ jobs:
   - task: replacetokens@5
     displayName: 'Replace Tokens'
     inputs:
-      targetFiles: '$(Pipeline.Workspace)/src/TodoistApp.Blazor/appsettings*.json'  # Target JSON files for token replacement
-      encoding: 'auto'  # Encoding type of the files
-      tokenPattern: 'default'  # Token pattern to replace
-      writeBOM: true  # Write BOM (Byte Order Mark)
-      actionOnMissing: 'warn'  # Action if files are missing
-      keepToken: false  # Keep or remove tokens after replacement
-      actionOnNoFiles: 'continue'  # Action if no files are found
-      enableTransforms: false  # Enable transformation
-      enableRecursion: false  # Enable recursion in directory search
-      useLegacyPattern: false  # Use legacy token pattern
-      enableTelemetry: true  # Enable telemetry for the task
+      targetFiles: 'D:\a\1\s\src\TodoistApp.Blazor\appsettings.json'
+      encoding: 'auto'
+      tokenPattern: 'default'
+      writeBOM: true
+      actionOnMissing: 'warn'
+      keepToken: false
+      actionOnNoFiles: 'continue'
+      enableTransforms: false
+      enableRecursion: false
+      useLegacyPattern: false
+      enableTelemetry: true
 
     # Step 3: Delete existing ZIP files
   - task: DeleteFiles@1
@@ -76,7 +76,7 @@ jobs:
   - task: ArchiveFiles@2
     displayName: 'Archive Modified Files'
     inputs:
-      rootFolderOrFile: 'D:\a\1\s\src\TodoistApp.Blazor\appsettings*.json'  # Root folder of files to archive
+      rootFolderOrFile: 'D:\a\1\s\src\TodoistApp.Blazor\appsettings.json'  # Root folder of files to archive
       includeRootFolder: false  # Do not include root folder in the archive
       archiveType: 'zip'  # Type of archive (e.g., zip)
       archiveFile: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'  # Path and name of the new archive
