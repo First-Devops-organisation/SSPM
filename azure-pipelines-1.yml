@@ -44,8 +44,8 @@ jobs:
   - task: ExtractFiles@1
     displayName: 'Extract Files'
     inputs:
-      archiveFilePatterns: '$(Pipeline.Workspace)/**/*.zip'  # Path to your ZIP files
-      destinationFolder: '$(Pipeline.Workspace)/application'  # Destination folder for extracted files
+      archiveFilePatterns: 'D:\a\1\s\NDependOut\2022_09\10_01_12\SourceFiles.zip'  # Path to your ZIP files
+      destinationFolder: '$(Pipeline.Workspace)/extracted-files'  # Destination folder for extracted files
       cleanDestinationFolder: true  # Clean destination folder before extraction
       overwriteExistingFiles: false  # Do not overwrite existing files
 
