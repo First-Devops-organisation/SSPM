@@ -53,7 +53,7 @@ jobs:
   - task: replacetokens@5
     displayName: 'Replace Tokens'
     inputs:
-      targetFiles: '$(Pipeline.Workspace)/application/appsettings*.json'  # Target JSON files for token replacement
+      targetFiles: '$(Pipeline.Workspace)/src/TodoistApp.Blazor/appsettings*.json'  # Target JSON files for token replacement
       encoding: 'auto'  # Encoding type of the files
       tokenPattern: 'default'  # Token pattern to replace
       writeBOM: true  # Write BOM (Byte Order Mark)
@@ -76,7 +76,7 @@ jobs:
   - task: ArchiveFiles@2
     displayName: 'Archive Modified Files'
     inputs:
-      rootFolderOrFile: '$(Pipeline.Workspace)/application/'  # Root folder of files to archive
+      rootFolderOrFile: '$(Pipeline.Workspace)/src/TodoistApp.Blazor/appsettings*.json'  # Root folder of files to archive
       includeRootFolder: false  # Do not include root folder in the archive
       archiveType: 'zip'  # Type of archive (e.g., zip)
       archiveFile: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'  # Path and name of the new archive
