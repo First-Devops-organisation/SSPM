@@ -41,13 +41,49 @@ jobs:
       codeCoverageTool: 'Cobertura'
       summaryFileLocation: '**/*.cobertura.xml'
 
-  - task: replacetokens@6
-    displayName: 'Replace tokens in configuration files'
+  - task: ExtractFiles@1
+    displayName: 'Extract Files'
     inputs:
-      root: '$(System.DefaultWorkingDirectory)/_SSPM (5)/drop'
-      sources: |
-        **/appsettings*.json
-        **/*.json
+      archiveFilePatterns: '$(Pipeline.Workspace)/**/*.zip'  # Path to your ZIP files
+      destinationFolder: '$(Pipeline.Workspace)/application'  # Destination folder for extracted files
+      cleanDestinationFolder: true  # Clean destination folder before extraction
+      overwriteExistingFiles: false  # Do not overwrite existing files
+
+    # Step 2: Replace tokens in JSON files
+  - task: replacetokens@5
+    displayName: 'Replace Tokens'
+    inputs:
+      targetFiles: '$(Pipeline.Workspace)/application/appsettings*.json'  # Target JSON files for token replacement
+      encoding: 'auto'  # Encoding type of the files
+      tokenPattern: 'default'  # Token pattern to replace
+      writeBOM: true  # Write BOM (Byte Order Mark)
+      actionOnMissing: 'warn'  # Action if files are missing
+      keepToken: false  # Keep or remove tokens after replacement
+      actionOnNoFiles: 'continue'  # Action if no files are found
+      enableTransforms: false  # Enable transformation
+      enableRecursion: false  # Enable recursion in directory search
+      useLegacyPattern: false  # Use legacy token pattern
+      enableTelemetry: true  # Enable telemetry for the task
+
+    # Step 3: Delete existing ZIP files
+  - task: DeleteFiles@1
+    displayName: 'Delete ZIP Files'
+    inputs:
+      SourceFolder: '$(Pipeline.Workspace)/drop/'  # Folder containing ZIP files to delete
+      Contents: '*.zip'  # File pattern to match ZIP files
+
+    # Step 4: Archive modified files into a new ZIP file
+  - task: ArchiveFiles@2
+    displayName: 'Archive Modified Files'
+    inputs:
+      rootFolderOrFile: '$(Pipeline.Workspace)/application/'  # Root folder of files to archive
+      includeRootFolder: false  # Do not include root folder in the archive
+      archiveType: 'zip'  # Type of archive (e.g., zip)
+      archiveFile: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'  # Path and name of the new archive
+      replaceExistingArchive: true  # Replace existing archive if it exists
+
+
+
 
   - task: DotNetCoreCLI@2
     displayName: Publish
