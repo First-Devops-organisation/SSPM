@@ -44,7 +44,10 @@ jobs:
   - task: replacetokens@6
     displayName: 'Replace tokens in configuration files'
     inputs:
-      sources: '**/appsettings*.json'
+      root: '$(System.DefaultWorkingDirectory)/_SSPM (5)/drop'
+      sources: |
+        **/appsettings*.json
+        **/*.json
 
   - task: DotNetCoreCLI@2
     displayName: Publish
