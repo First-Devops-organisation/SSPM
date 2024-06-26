@@ -76,7 +76,7 @@ jobs:
   - task: ArchiveFiles@2
     displayName: 'Archive Modified Files'
     inputs:
-      rootFolderOrFile: '$(Pipeline.Workspace)/src/TodoistApp.Blazor/appsettings*.json'  # Root folder of files to archive
+      rootFolderOrFile: 'D:\a\1\s\src\TodoistApp.Blazor\appsettings*.json'  # Root folder of files to archive
       includeRootFolder: false  # Do not include root folder in the archive
       archiveType: 'zip'  # Type of archive (e.g., zip)
       archiveFile: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'  # Path and name of the new archive
