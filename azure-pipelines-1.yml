@@ -49,11 +49,14 @@ jobs:
       cleanDestinationFolder: true  # Clean destination folder before extraction
       overwriteExistingFiles: false  # Do not overwrite existing files
 
+    
+    
     # Step 2: Replace tokens in JSON files
+  
   - task: replacetokens@5
     displayName: 'Replace Tokens'
     inputs:
-      targetFiles: 'D:\a\1\s\src\TodoistApp.Blazor\appsettings.json'
+      targetFiles: '**/*.json'
       encoding: 'auto'
       tokenPattern: 'default'
       writeBOM: true
@@ -64,7 +67,7 @@ jobs:
       enableRecursion: false
       useLegacyPattern: false
       enableTelemetry: true
-
+  
     # Step 3: Delete existing ZIP files
   - task: DeleteFiles@1
     displayName: 'Delete ZIP Files'
