@@ -67,9 +67,7 @@ jobs:
       actionOnMissing: 'warn'
       keepToken: false
       actionOnNoFiles: 'continue'
-      enableTransforms: true
-      transformPrefix: '#{'
-      transformSuffix: '}#'
+      enableTransforms: false
       enableRecursion: false
       useLegacyPattern: false
-      enableTelemetry: true 
+      enableTelemetry: true
