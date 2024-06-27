@@ -55,14 +55,15 @@ jobs:
       tokenPattern: 'default'
       writeBOM: true
       actionOnMissing: 'warn'
-      keepToken: false
+      keepToken: true
       actionOnNoFiles: 'continue'
-      enableTransforms: false
+      enableTransforms: true
+      transformPrefix: '#{'
+      transformSuffix: '}#'
       enableRecursion: false
       useLegacyPattern: false
       enableTelemetry: true
-  
-  
+
 
   - task: DotNetCoreCLI@2
     displayName: Publish
