@@ -56,18 +56,3 @@ jobs:
       PathtoPublish: '$(build.artifactstagingdirectory)'
     condition: succeededOrFailed()
 
-  - task: replacetokens@5
-    displayName: 'Replace Tokens'
-    inputs:
-      rootDirectory: 'src'
-      targetFiles: '**/*.json'
-      encoding: 'auto'
-      tokenPattern: 'azpipelines'
-      writeBOM: true
-      actionOnMissing: 'warn'
-      keepToken: false
-      actionOnNoFiles: 'continue'
-      enableTransforms: false
-      enableRecursion: false
-      useLegacyPattern: false
-      enableTelemetry: true
