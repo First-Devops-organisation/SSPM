@@ -42,10 +42,20 @@ jobs:
       codeCoverageTool: 'Cobertura'
       summaryFileLocation: '**/*.cobertura.xml'
 
-  
-  
-    # Step 2: Replace tokens in JSON files
-  
+  - task: DotNetCoreCLI@2
+    displayName: Publish
+    inputs:
+      command: publish
+      publishWebProjects: true
+      arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+      zipAfterPublish: true
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact'
+    inputs:
+      PathtoPublish: '$(build.artifactstagingdirectory)'
+    condition: succeededOrFailed()
+
   - task: replacetokens@5
     displayName: 'Replace Tokens'
     inputs:
@@ -62,19 +72,4 @@ jobs:
       transformSuffix: '}#'
       enableRecursion: false
       useLegacyPattern: false
-      enableTelemetry: true
-
-
-  - task: DotNetCoreCLI@2
-    displayName: Publish
-    inputs:
-      command: publish
-      publishWebProjects: true
-      arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
-      zipAfterPublish: true
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact'
-    inputs:
-      PathtoPublish: '$(build.artifactstagingdirectory)'
-    condition: succeededOrFailed()
+      enableTelemetry: true 
