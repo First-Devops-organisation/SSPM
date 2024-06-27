@@ -55,7 +55,7 @@ jobs:
       tokenPattern: 'default'
       writeBOM: true
       actionOnMissing: 'warn'
-      keepToken: true
+      keepToken: false
       actionOnNoFiles: 'continue'
       enableTransforms: true
       transformPrefix: '#{'
