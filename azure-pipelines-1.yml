@@ -62,7 +62,7 @@ jobs:
       rootDirectory: 'src'
       targetFiles: '**/*.json'
       encoding: 'auto'
-      tokenPattern: 'default'
+      tokenPattern: 'azpipelines'
       writeBOM: true
       actionOnMissing: 'warn'
       keepToken: false
