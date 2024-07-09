@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appName": {
+      "value": "meus-fapp-dev-cptgbatch-001"
+    },
+    "hostingPlanName": {
+      "value": "meus-asp-dev-cptgbatch-001"
+    },
+    "location": {
+      "value": "eastus2"
+    },
+    "sku": {
+      "value": "Basic"
+    },
+    "skuCode": {
+      "value": "B1"
+    },
+    "storageAccountName": {
+      "value": "meusstordevcptgbatch002"
+    },
+    "AccountKind": {
+      "value": "StorageV2"
+    },
+    "AccountType": {
+      "value": "Standard_LRS"
+    },
+    "storageAccessTier": {
+      "value": "Hot"
+    },
+    "minimumTLSVersion": {
+      "value": "TLS1_2"
+    },
+    "supportsHttpsTrafficOnly": {
+      "value": "False"
+    },
+    "allowBlobPublicAccess": {
+      "value": "False"
+    },
+  	"ServiceOwner": {
+      "value": "Ankur Jain"
+    },
+    "Environment": {
+      "value": "dev"
+    }
+  }
+}
