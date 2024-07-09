@@ -42,6 +42,11 @@ jobs:
       codeCoverageTool: 'Cobertura'
       summaryFileLocation: '**/*.cobertura.xml'
 
+  - task: SonarQubePrepare@6
+    inputs:
+      SonarQube: 'MY_SonarQube'
+      scannerMode: 'Other'
+
   - task: DotNetCoreCLI@2
     displayName: Publish
     inputs:
