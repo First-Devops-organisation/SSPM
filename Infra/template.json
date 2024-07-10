@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "location": {
-            "type": "eastus"
+            "type": "string"
         },
         "storageAccountName": {
-            "type": "bftrfytg"
+            "type": "string"
         },
         "accountType": {
             "type": "string"
