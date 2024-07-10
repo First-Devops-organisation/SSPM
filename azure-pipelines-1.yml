@@ -22,6 +22,12 @@ jobs:
       command: restore
       projects: '$(RestoreBuildProjects)'
 
+  - task: SonarQubePrepare@6
+    inputs:
+     SonarQube: 'SonarQube'
+     scannerMode: 'MSBuild'
+     projectKey: 'YASH-DevOps-Serverless_SSPM_724b9a26-9dcb-4d52-ac09-2380ec07c4d4'
+   
   - task: DotNetCoreCLI@2
     displayName: Build
     inputs:
@@ -29,6 +35,14 @@ jobs:
       projects: '$(RestoreBuildProjects)'
       arguments: '--configuration $(BuildConfiguration)'
 
+  - task: SonarQubeAnalyze@6
+    inputs:
+      jdkversion: 'JAVA_HOME_17_X64'
+
+  - task: SonarQubePublish@6
+    inputs:
+      pollingTimeoutSec: '300'
+  
   - task: DotNetCoreCLI@2
     displayName: Test
     inputs:
@@ -42,10 +56,6 @@ jobs:
       codeCoverageTool: 'Cobertura'
       summaryFileLocation: '**/*.cobertura.xml'
 
-  - task: SonarQubePrepare@6
-    inputs:
-      SonarQube: 'MY_SonarQube'
-      scannerMode: 'Other'
 
   - task: DotNetCoreCLI@2
     displayName: Publish
