@@ -24,10 +24,11 @@ jobs:
 
   - task: SonarQubePrepare@6
     inputs:
-     SonarQube: 'SonarQube'
-     scannerMode: 'MSBuild'
-     projectKey: 'YASH-DevOps-Serverless_SSPM_724b9a26-9dcb-4d52-ac09-2380ec07c4d4'
-   
+      SonarQube: 'Sonarqube'
+      scannerMode: 'MSBuild'
+      projectKey: 'MySonarProject'
+      projectName: 'MySonarProject'
+
   - task: DotNetCoreCLI@2
     displayName: Build
     inputs:
@@ -37,7 +38,7 @@ jobs:
 
   - task: SonarQubeAnalyze@6
     inputs:
-      jdkversion: 'JAVA_HOME_17_X64'
+      jdkversion: 'JAVA_HOME'
 
   - task: SonarQubePublish@6
     inputs:
