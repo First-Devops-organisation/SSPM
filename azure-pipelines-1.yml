@@ -35,8 +35,6 @@ jobs:
       projects: '$(RestoreBuildProjects)'
       arguments: '--configuration $(BuildConfiguration)'
 
-  - task: SonarQubeAnalyze@6
-
   - task: SonarQubePublish@6
     inputs:
       pollingTimeoutSec: '300'
