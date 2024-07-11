@@ -10,7 +10,6 @@ variables:
     group: JsonVariableGrp  # Reference a variable group named 'JsonVariableGrp'
     RestoreBuildProjects: '**/*.csproj'   # Default value for projects to restore
     TestProjects: '**/*[Tt]ests/*.csproj'  # Default value for test projects
-    system.debug: true
 
 jobs:
 - job: BuildTestPublish
