@@ -24,7 +24,7 @@ jobs:
 
   - task: SonarQubePrepare@6
     inputs:
-      SonarQube: 'Sonarqube'
+      SonarQube: 'MySonar'
       scannerMode: 'MSBuild'
       projectKey: 'MySonarProject'
       projectName: 'MySonarProject'
