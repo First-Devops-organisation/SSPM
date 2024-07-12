@@ -24,7 +24,8 @@ jobs:
   - task: SonarQubePrepare@6
     inputs:
       SonarQube: 'MySonar'
-      scannerMode: 'Other'
+      scannerMode: 'CLI'
+      configMode: 'file'
 
   - task: DotNetCoreCLI@2
     displayName: Build
