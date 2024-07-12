@@ -25,7 +25,6 @@ jobs:
     inputs:
       SonarQube: 'MySonar'
       scannerMode: 'MSBuild'
-      msBuildVersion: '6.2.0'
       projectKey: 'MySonar'
       projectName: 'MySonar'
 
