@@ -24,8 +24,10 @@ jobs:
   - task: SonarQubePrepare@6
     inputs:
       SonarQube: 'MySonar'
-      scannerMode: 'CLI'
-      configMode: 'file'
+      scannerMode: 'MSBuild'
+      msBuildVersion: '6.2.0.85879'
+      projectKey: 'MySonar'
+      projectName: 'MySonar'
 
   - task: DotNetCoreCLI@2
     displayName: Build
@@ -33,8 +35,10 @@ jobs:
       command: build
       projects: '$(RestoreBuildProjects)'
       arguments: '--configuration $(BuildConfiguration)'
-  
+
   - task: SonarQubeAnalyze@6
+    inputs:
+      jdkversion: 'JAVA_HOME_21_X64'
 
   - task: SonarQubePublish@6
     inputs:
