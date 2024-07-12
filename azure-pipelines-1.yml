@@ -24,9 +24,7 @@ jobs:
   - task: SonarQubePrepare@6
     inputs:
       SonarQube: 'MySonar'
-      scannerMode: 'MSBuild'
-      projectKey: 'MySonarProject'
-      projectName: 'MySonarProject'
+      scannerMode: 'Other'
 
   - task: DotNetCoreCLI@2
     displayName: Build
