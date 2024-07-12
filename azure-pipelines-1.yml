@@ -23,9 +23,9 @@ jobs:
 
   - task: SonarQubePrepare@6
     inputs:
-      SonarQube: 'MySonar'
+      SonarQube: 'SonarQube'
       scannerMode: 'MSBuild'
-      projectKey: 'MySonar'
+      projectKey: 'YASH-DevOps-Serverless_SSPM_314bae8b-ed1c-49c0-bc75-ece18300b1d4'
       projectName: 'MySonar'
 
   - task: DotNetCoreCLI@2
