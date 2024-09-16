@@ -11,7 +11,7 @@ steps:
     targetType: 'inline'
     script: |
       # Define the Open API URL
-      $apiUrl = "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid={577076c07eb236ac7e12910169319559}"
+      $apiUrl = "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid={5dc9fc5b70dd6250df6ca45822416659}"
       
       # Make the API call (GET request)
       $response = Invoke-RestMethod -Uri $apiUrl -Method GET
