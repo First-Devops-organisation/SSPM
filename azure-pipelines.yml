@@ -12,7 +12,7 @@ steps:
     script: |
 
       # Define the API endpoint URL
-        $apiUrl = "https://newsapi.org/v2/everything?q=tesla&from=2024-08-16&sortBy=publishedAt"
+        $apiUrl = "https://newsapi.org/v2/everything?q=apple&from=2024-09-15&to=2024-09-15&sortBy=popularity"
  
       # Define the API key
         $apiKey = "3ef2e1f5f5764cc88f0fe226e941aaeb"
