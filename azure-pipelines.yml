@@ -12,10 +12,10 @@ steps:
     script: |
 
       # Define the API endpoint URL
-        $apiUrl = "https://api.uptimerobot.com/v2/getMonitors"
+        $apiUrl = "https://newsapi.org/v2/everything?q=tesla&from=2024-08-16&sortBy=publishedAt"
  
       # Define the API key
-        $apiKey = "u2675880-afa87a2ccdf232fe87496cd0"
+        $apiKey = "3ef2e1f5f5764cc88f0fe226e941aaeb"
  
       # Set up the headers with the API key
         $headers = @{
