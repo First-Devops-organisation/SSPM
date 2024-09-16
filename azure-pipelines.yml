@@ -12,10 +12,10 @@ steps:
     script: |
 
       # Define the API endpoint URL
-        $apiUrl = "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99"
+        $apiUrl = "https://api.uptimerobot.com/v2/getMonitors"
  
       # Define the API key
-        $apiKey = "5dc9fc5b70dd6250df6ca45822416659"
+        $apiKey = "u2675880-afa87a2ccdf232fe87496cd0"
  
       # Set up the headers with the API key
         $headers = @{
