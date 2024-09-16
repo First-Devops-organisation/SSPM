@@ -13,8 +13,8 @@ steps:
       # Define the Open API URL
       $apiUrl = "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid={577076c07eb236ac7e12910169319559}"
       
-      # Make the API call (POST request)
-      $response = Invoke-RestMethod -Uri $apiUrl -Method POST
+      # Make the API call (GET request)
+      $response = Invoke-RestMethod -Uri $apiUrl -Method GET
       
       # Output the response in JSON format
       $response | ConvertTo-Json
