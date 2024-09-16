@@ -1,0 +1,20 @@
+# Azure DevOps Pipeline YAML
+trigger:
+- main
+ 
+pool:
+  vmImage: 'windows-latest'
+ 
+steps:
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Define the Open API URL
+      $apiUrl = "https://api.uptimerobot.com/v2/getMonitors?api_key=u2675880-afa87a2ccdf232fe87496cd0"
+      
+      # Make the API call (GET request)
+      $response = Invoke-RestMethod -Uri $apiUrl -Method POST
+      
+      # Output the response in JSON format
+      $response | ConvertTo-Json
