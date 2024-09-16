@@ -11,7 +11,7 @@ steps:
     targetType: 'inline'
     script: |
       # Define the Open API URL
-      $apiUrl = "https://api.uptimerobot.com/v2/getMonitors?api_key=u2675880-afa87a2ccdf232fe87496cd0"
+      $apiUrl = "https://api.uptimerobot.com/v2/getAccountDetails?api_key=u2675880-afa87a2ccdf232fe87496cd0"
       
       # Make the API call (POST request)
       $response = Invoke-RestMethod -Uri $apiUrl -Method POST
