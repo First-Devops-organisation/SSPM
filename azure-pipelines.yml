@@ -1,6 +1,6 @@
 # Azure DevOps Pipeline YAML
 trigger:
-- main
+- none
  
 pool:
   vmImage: 'windows-latest'
