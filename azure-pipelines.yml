@@ -12,7 +12,7 @@ steps:
     script: |
 
       # Define the API endpoint
-      $apiUrl = "https://reqres.in/api/users"
+      $apiUrl = "https://reqres.in/api/users/2"
         
       # Define the headers (if any)
       $headers = @{
