@@ -19,6 +19,12 @@ steps:
             "Content-Type" = "application/json"
             "Authorization" = "Bearer your_api_token"  # Replace with your token if needed
       }
+
+      # Define the data to send in the request body
+      $body = @{
+            "email" = "abc@gmail.com"
+            "age" = 30
+      } | ConvertTo-Json
         
       # Make the DELETE request
       $response = Invoke-RestMethod -Uri $apiUrl -Method Delete -Headers $headers
