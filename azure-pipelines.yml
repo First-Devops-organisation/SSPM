@@ -26,8 +26,8 @@ steps:
             "age" = 30
       } | ConvertTo-Json
         
-      # Make the POST request
-      $response = Invoke-RestMethod -Uri $apiUrl -Method Post -Headers $headers -Body $body
+      # Make the PUT request
+      $response = Invoke-RestMethod -Uri $apiUrl -Method Put -Headers $headers -Body $jsonBody
         
       # Print the output in JSON format
       $response | ConvertTo-Json -Depth 10      
